@@ -1,0 +1,30 @@
+#=============================================================================
+# Copyright (C) 2013 Daniel Pfeifer <daniel@pfeifer-mail.de>
+#
+# Distributed under the Boost Software License, Version 1.0.
+# See accompanying file LICENSE_1_0.txt or copy at
+#   http://www.boost.org/LICENSE_1_0.txt
+#=============================================================================
+
+language: cpp
+
+compiler:
+  - clang
+  - gcc
+
+env:
+  matrix:
+    - BUILD_TYPE=Debug
+    - BUILD_TYPE=Release
+
+before_install:
+  - git submodule update --init --recursive
+  - sudo add-apt-repository -y ppa:purplekarrot/cmake
+
+script:
+  - mkdir build
+  - cd build
+  - cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE ..
+  - cmake --build .
+  - ctest --output-on-failure .
+
