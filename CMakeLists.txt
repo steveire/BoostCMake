@@ -8,8 +8,12 @@ cmake_minimum_required(VERSION 2.8.11 FATAL_ERROR)
 project(BoostCMake NONE)
 
 message(STATUS "Using CMake ${CMAKE_VERSION}")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/Modules")
+find_package(Git REQUIRED)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Modules")
-file(COPY "listsfiles/" DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/boost")
+execute_process(COMMAND ${GIT_EXECUTABLE} clone --recursive https://github.com/boostorg/boost.git
+  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+  )
+file(COPY "listsfiles/" DESTINATION "${CMAKE_BINARY_DIR}/boost")
 
-add_subdirectory(boost)
+add_subdirectory("${CMAKE_BINARY_DIR}/boost" "${CMAKE_BINARY_DIR}/boost-build")
