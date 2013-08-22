@@ -1,26 +1,8 @@
 # Distributed under the Boost Software License, Version 1.0.
 # See http://www.boost.org/LICENSE_1_0.txt
 
-cmake_minimum_required(VERSION 2.8.8)
+cmake_minimum_required(VERSION 2.8.11)
 project(BoostProgramOptions CXX)
-
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostAny)
-ryppl_find_and_use_package(BoostBind)
-ryppl_find_and_use_package(BoostConfig)
-ryppl_find_and_use_package(BoostConversion)
-ryppl_find_and_use_package(BoostDetail)
-ryppl_find_and_use_package(BoostException)
-ryppl_find_and_use_package(BoostFunction)
-ryppl_find_and_use_package(BoostIterator)
-ryppl_find_and_use_package(BoostSmartPtr)
-ryppl_find_and_use_package(BoostStaticAssert)
-ryppl_find_and_use_package(BoostTokenizer)
-ryppl_find_and_use_package(BoostTypeTraits)
-ryppl_find_and_use_package(BoostUtility)
-
-include_directories(include)
 
 add_library(boost_program_options
   src/cmdline
@@ -36,21 +18,22 @@ add_library(boost_program_options
   src/split
   )
 
-ryppl_export(
-  TARGETS
-    boost_program_options
-  DEPENDS
-    BoostAny
-    BoostConfig
-    BoostConversion
-    BoostDetail
-    BoostException
-    BoostFunction
-    BoostIterator
-    BoostSmartPtr
-    BoostStaticAssert
-    BoostTypeTraits
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+target_include_directories(boost_program_options PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
+  )
+
+add_library(boost::program_options ALIAS boost_program_options)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_program_options EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

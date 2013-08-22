@@ -1,14 +1,8 @@
 # Distributed under the Boost Software License, Version 1.0.
 # See http://www.boost.org/LICENSE_1_0.txt
 
-cmake_minimum_required(VERSION 2.8.8)
+cmake_minimum_required(VERSION 2.8.11)
 project(Quickbook CXX)
-
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostFilesystem)
-ryppl_find_and_use_package(BoostProgramOptions)
-ryppl_find_and_use_package(BoostSpirit)
 
 if(MSVC)
   add_definitions(-D_SCL_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_WARNINGS
@@ -20,11 +14,14 @@ add_executable(quickbook
   src/actions.cpp
   src/doc_info_actions.cpp
   src/state.cpp
+  src/dependency_tracker.cpp
   src/utils.cpp
   src/files.cpp
   src/input_path.cpp
   src/values.cpp
   src/id_manager.cpp
+  src/id_generation.cpp
+  src/id_xml.cpp
   src/post_process.cpp
   src/collector.cpp
   src/template_stack.cpp
@@ -38,10 +35,16 @@ add_executable(quickbook
   src/doc_info_grammar.cpp
   )
 
-target_link_libraries(quickbook
-  boost_program_options
-  boost_filesystem
-  boost_system
+target_link_libraries(quickbook PRIVATE
+  boost::program_options
+  boost::filesystem
   )
 
-ryppl_export(TARGETS quickbook)
+install(TARGETS quickbook EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
+  )
