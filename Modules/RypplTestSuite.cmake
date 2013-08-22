@@ -26,10 +26,6 @@
 include(CMakeParseArguments)
 include(detail/test_implementation)
 
-if(NOT TARGET test)
-  add_custom_target(test)
-endif()  
-
 function(ryppl_test_suite)
   if(RYPPL_DISABLE_TESTS)
     return()
@@ -151,5 +147,4 @@ function(ryppl_test_suite)
       -P "${__boost_test_summary}"
     DEPENDS ${TEST_FILES}
     )
-  add_dependencies(test ${target})
 endfunction()

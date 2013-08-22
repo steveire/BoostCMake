@@ -47,6 +47,10 @@ target_include_directories(boost_test_exec_monitor PUBLIC
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
+target_link_libraries(boost_test_exec_monitor PRIVATE
+  boost::array
+  )
+
 add_library(boost_unit_test_framework
   src/compiler_log_formatter.cpp
   src/debug.cpp
@@ -71,8 +75,12 @@ add_library(boost_unit_test_framework
   )
 
 target_include_directories(boost_unit_test_framework PUBLIC
-  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
+
+target_link_libraries(boost_unit_test_framework PUBLIC
+  boost::array
   )
 
 add_library(boost::prg_exec_monitor ALIAS boost_prg_exec_monitor)

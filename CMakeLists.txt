@@ -7,6 +7,8 @@
 cmake_minimum_required(VERSION 2.8.11 FATAL_ERROR)
 project(BoostCMake NONE)
 
+enable_testing()
+
 message(STATUS "Using CMake ${CMAKE_VERSION}")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/Modules")
 find_package(Git REQUIRED)

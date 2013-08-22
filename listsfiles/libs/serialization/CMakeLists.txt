@@ -50,6 +50,7 @@ target_include_directories(boost_serialization PUBLIC
   )
 
 target_link_libraries(boost_serialization PRIVATE
+  boost::array
   boost::spirit
   )
 

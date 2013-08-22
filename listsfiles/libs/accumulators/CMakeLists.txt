@@ -4,33 +4,13 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostAccumulators)
 
+add_subdirectory(test)
+
 add_library(boost::accumulators INTERFACE)
 target_include_directories(boost::accumulators INTERFACE
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
-
-#target_link_libraries(boost::accumulators
-#  boost::array
-#    BoostCircularBuffer
-#    BoostConceptCheck
-#    BoostConfig
-#    BoostDetail
-#    BoostException
-#    BoostFusion
-#    BoostIterator
-#    BoostMPL
-#    BoostNumericConversion
-#    BoostParameter
-#    BoostPreprocessor
-#    BoostRange
-#    BoostStaticAssert
-#    BoostTuple
-#    BoostTypeTraits
-#    BoostTypeof
-#    BoostUBLAS
-#    BoostUtility
-#  )
 
 install(DIRECTORY include/ DESTINATION include)
 

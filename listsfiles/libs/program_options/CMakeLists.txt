@@ -23,6 +23,10 @@ target_include_directories(boost_program_options PUBLIC
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
+target_link_libraries(boost_program_options PRIVATE
+  boost::array
+  )
+
 add_library(boost::program_options ALIAS boost_program_options)
 
 install(DIRECTORY include/ DESTINATION include)

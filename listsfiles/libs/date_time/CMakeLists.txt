@@ -19,6 +19,10 @@ target_include_directories(boost_date_time PUBLIC
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
+target_link_libraries(boost_date_time PRIVATE
+  boost::array
+  )
+
 add_library(boost::date_time ALIAS boost_date_time)
 
 install(DIRECTORY include/ DESTINATION include)
