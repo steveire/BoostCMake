@@ -5,8 +5,7 @@ cmake_minimum_required(VERSION 2.8.8)
 project(BoostAccumulators)
 
 add_library(boost::accumulators INTERFACE)
-
-target_include_directories(boost::accumulators PUBLIC
+target_include_directories(boost::accumulators INTERFACE
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )

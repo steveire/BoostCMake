@@ -1,13 +1,8 @@
 # Distributed under the Boost Software License, Version 1.0.
 # See http://www.boost.org/LICENSE_1_0.txt
 
-cmake_minimum_required(VERSION 2.8.8)
+cmake_minimum_required(VERSION 2.8.11)
 project(BoostFilesystem CXX)
-
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostSystem)
-include_directories(include)
 
 add_library(boost_filesystem
   src/operations.cpp
@@ -20,34 +15,27 @@ add_library(boost_filesystem
   src/windows_file_codecvt.cpp
   )
 
-if(NOT BUILD_SHARED_LIBS)
-  set_target_properties(boost_filesystem PROPERTIES
-    PREFIX "lib"
-    )
-endif(NOT BUILD_SHARED_LIBS)
-
-target_link_libraries(boost_filesystem
-  boost_system
+target_include_directories(boost_filesystem PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
-ryppl_add_test_subdirectory(test)
-
-
-ryppl_export(
-  TARGETS
-    boost_filesystem
-  DEPENDS
-    BoostConfig
-    BoostDetail
-    BoostFunctional
-    BoostIO
-    BoostInteger
-    BoostIterator
-    BoostSmartPtr
-    BoostStaticAssert
-    BoostSystem
-    BoostTypeTraits
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+target_link_libraries(boost_filesystem PUBLIC
+  boost::system
   )
+
+add_library(boost::filesystem ALIAS boost_filesystem)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_filesystem EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
+  )
+

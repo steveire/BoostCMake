@@ -4,12 +4,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostSystem CXX)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostConfig)
-ryppl_find_and_use_package(BoostInteger) # cstdint.hpp
-ryppl_find_and_use_package(BoostUtility) # assert.hpp, noncopyable.hpp, enable_if.hpp, operators.hpp
-
 include_directories(include)
 
 add_library(boost_system
@@ -17,22 +11,23 @@ add_library(boost_system
   src/local_free_on_destruction.hpp
   )
 
-if(NOT BUILD_SHARED_LIBS)
-  set_target_properties(boost_system PROPERTIES
-    PREFIX "lib"
-    )
-endif(NOT BUILD_SHARED_LIBS)
-
-#add_subdirectory(doc)
-
-
-ryppl_export(
-  TARGETS
-    boost_system
-  DEPENDS
-    BoostConfig
-    BoostInteger
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+target_include_directories(boost_system PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
+
+add_library(boost::system ALIAS boost_system)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_system EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
+  )
+
