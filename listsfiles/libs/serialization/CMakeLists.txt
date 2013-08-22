@@ -1,14 +1,8 @@
 # Distributed under the Boost Software License, Version 1.0.
 # See http://www.boost.org/LICENSE_1_0.txt
 
-cmake_minimum_required(VERSION 2.8.8)
+cmake_minimum_required(VERSION 2.8.11)
 project(BoostSerialization CXX)
-
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostUtility)
-ryppl_find_and_use_package(BoostSpirit)
-include_directories(include)
 
 if(MSVC)
   add_definitions(
@@ -17,11 +11,7 @@ if(MSVC)
     /D_CRT_SECURE_NO_WARNINGS
     /D_SCL_SECURE_NO_WARNINGS
     )
-endif(MSVC)
-
-# if(GCC)
-#   add_definitions(-fvisibility=hidden)
-# endif(GCC)
+endif()
 
 add_library(boost_serialization
   src/basic_archive
@@ -54,6 +44,15 @@ add_library(boost_serialization
   src/shared_ptr_helper
   )
 
+target_include_directories(boost_serialization PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
+  )
+
+target_link_libraries(boost_serialization PRIVATE
+  boost::spirit
+  )
+
 add_library(boost_wserialization
   src/basic_text_wiprimitive
   src/basic_text_woprimitive
@@ -66,30 +65,23 @@ add_library(boost_wserialization
   src/codecvt_null
   )
 
-target_link_libraries(boost_wserialization
+target_link_libraries(boost_wserialization PUBLIC
   boost_serialization
   )
 
-ryppl_export(
-  TARGETS
-    boost_serialization
-    boost_wserialization
-  DEPENDS
-    BoostArray
-    BoostConfig
-    BoostDetail
-    BoostIO
-    BoostInteger
-    BoostIterator
-    BoostMPL
-    BoostOptional
-    BoostPreprocessor
-    BoostSmartPtr
-    BoostSpirit
-    BoostStaticAssert
-    BoostTypeTraits
-    BoostUtility
-    BoostVariant
-  INCLUDE_DIRECTORIES
-    include
+add_library(boost::serialization ALIAS boost_serialization)
+add_library(boost::wserialization ALIAS boost_wserialization)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_serialization boost_wserialization
+  EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

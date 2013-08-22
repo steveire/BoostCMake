@@ -1,36 +1,10 @@
 # Distributed under the Boost Software License, Version 1.0.
 # See http://www.boost.org/LICENSE_1_0.txt
 
-cmake_minimum_required(VERSION 2.8.8)
+cmake_minimum_required(VERSION 2.8.11)
 project(BoostMPI CXX)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostConfig)
-ryppl_find_and_use_package(BoostConversion)
-ryppl_find_and_use_package(BoostDetail)
-ryppl_find_and_use_package(BoostException)
-ryppl_find_and_use_package(BoostFunction)
-ryppl_find_and_use_package(BoostGraph)
-ryppl_find_and_use_package(BoostInteger)
-ryppl_find_and_use_package(BoostIterator)
-ryppl_find_and_use_package(BoostMPL)
-ryppl_find_and_use_package(BoostOptional)
-ryppl_find_and_use_package(BoostPropertyMap)
-ryppl_find_and_use_package(BoostPython)
-ryppl_find_and_use_package(BoostSerialization)
-ryppl_find_and_use_package(BoostSmartPtr)
-ryppl_find_and_use_package(BoostStaticAssert)
-ryppl_find_and_use_package(BoostTypeTraits)
-ryppl_find_and_use_package(BoostUtility)
-ryppl_find_package(MPI)
-ryppl_find_package(PythonLibs)
-
-include_directories(
-  ${MPI_INCLUDE_PATH}
-  ${PYTHON_INCLUDE_DIRS}
-  include
-  )
+find_package(MPI REQUIRED)
 
 if(MSVC)
   add_definitions(
@@ -39,7 +13,7 @@ if(MSVC)
     /wd4275 # non dll-interface class used as base for dll-interface class
     /wd4996 # 'strdup': The POSIX name for this item is deprecated.
     )
-endif(MSVC)
+endif()
 
 add_library(boost_mpi
   src/broadcast.cpp
@@ -63,14 +37,22 @@ add_library(boost_mpi
   src/timer.cpp
   )
 
+target_include_directories(boost_mpi PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  ${MPI_INCLUDE_PATH}
+  )
+
 set_property(TARGET boost_mpi APPEND PROPERTY
   COMPILE_DEFINITIONS BOOST_MPI_SOURCE
   )
 
 target_link_libraries(boost_mpi
-  boost_serialization
+  boost::serialization
   ${MPI_LIBRARIES}
   )
+
+add_library(boost::mpi ALIAS boost_mpi)
 
 add_library(boost_mpi_python
   src/python/serialize.cpp
@@ -81,9 +63,11 @@ set_property(TARGET boost_mpi_python APPEND PROPERTY
   )
 
 target_link_libraries(boost_mpi_python
-  boost_mpi
-  boost_python
+  boost::mpi
+  boost::python
   )
+
+add_library(boost::mpi::python ALIAS boost_mpi_python)
 
 if(BUILD_SHARED_LIBS)
   add_library(boost_mpi-py MODULE
@@ -101,7 +85,7 @@ if(BUILD_SHARED_LIBS)
     src/python/py_timer.cpp
     )
   target_link_libraries(boost_mpi-py
-    boost_mpi_python
+    boost::mpi::python
     )
   set_target_properties(boost_mpi-py PROPERTIES
     OUTPUT_NAME mpi
@@ -112,31 +96,18 @@ if(BUILD_SHARED_LIBS)
       IMPORT_SUFFIX .pyd
       SUFFIX .pyd
       )
-  endif(WIN32)
-endif(BUILD_SHARED_LIBS)
+  endif()
+endif()
 
-ryppl_export(
-  TARGETS
-    boost_mpi
-    boost_mpi_python
-  DEPENDS
-    BoostConfig
-    BoostDetail
-    BoostException
-    BoostFunction
-    BoostGraph
-    BoostInteger
-    BoostIterator
-    BoostMPL
-    BoostOptional
-    BoostPropertyMap
-    BoostSmartPtr
-    BoostStaticAssert
-    BoostTypeTraits
-    BoostUtility
-  RECOMMENDS
-    BoostPython
-    BoostSerialization
-  INCLUDE_DIRECTORIES
-    include
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_mpi boost_mpi_python EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )
