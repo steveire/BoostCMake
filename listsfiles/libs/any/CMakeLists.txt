@@ -4,18 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostAny)
 
-include(Ryppl)
+add_library(boost::any INTERFACE)
 
-ryppl_add_doc_subdirectory(doc)
-ryppl_add_test_subdirectory(test)
+target_include_directories(boost::any INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
+install(DIRECTORY include/ DESTINATION include)
 
-ryppl_export(
-  DEPENDS
-    BoostConfig
-    BoostException
-    BoostStaticAssert
-    BoostTypeTraits
-  INCLUDE_DIRECTORIES
-    include
+install(TARGETS boost::any EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

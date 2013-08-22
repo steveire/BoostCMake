@@ -25,6 +25,7 @@ target_include_directories(boost_program_options PUBLIC
 
 target_link_libraries(boost_program_options PRIVATE
   boost::array
+  boost::any
   boost::math
   )
 

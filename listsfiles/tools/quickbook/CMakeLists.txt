@@ -41,6 +41,7 @@ target_include_directories(quickbook PRIVATE
 
 target_link_libraries(quickbook PRIVATE
   boost::program_options
+  boost::algorithm
   boost::filesystem
   boost::spirit
   boost::math

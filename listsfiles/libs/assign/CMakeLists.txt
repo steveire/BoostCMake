@@ -4,22 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostAssign)
 
-include(Ryppl)
+add_library(boost::assign INTERFACE)
 
-ryppl_add_test_subdirectory(test)
+target_include_directories(boost::assign INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
-ryppl_export(
-  DEPENDS
-    BoostArray
-    BoostConfig
-    BoostDetail
-    BoostMPL
-    BoostPreprocessor
-    BoostPtrContainer
-    BoostRange
-    BoostStaticAssert
-    BoostTuple
-    BoostTypeTraits
-  INCLUDE_DIRECTORIES
-    include
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost::assign EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

@@ -4,28 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostAsio)
 
-include(Ryppl)
+add_library(boost::asio INTERFACE)
 
-ryppl_add_test_subdirectory(test)
+target_include_directories(boost::asio INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
-ryppl_export(
-  DEPENDS
-    BoostArray
-    BoostBind
-    BoostChrono
-    BoostConfig
-    BoostDetail
-    BoostDateTime
-    BoostException
-    BoostFunction
-    BoostInteger
-    BoostIterator
-    BoostPreprocessor
-    BoostRegex
-    BoostSmartPtr
-    BoostSystem
-    BoostTypeTraits
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost::asio EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )
