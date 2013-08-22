@@ -11,8 +11,10 @@ message(STATUS "Using CMake ${CMAKE_VERSION}")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/Modules")
 find_package(Git REQUIRED)
 
-execute_process(COMMAND ${GIT_EXECUTABLE} clone --recursive https://github.com/boostorg/boost.git
-  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+execute_process(COMMAND
+  ${CMAKE_SOURCE_DIR}/shallow-clone
+  https://github.com/boostorg/boost.git
+  ${CMAKE_BINARY_DIR}/boost
   )
 file(COPY "listsfiles/" DESTINATION "${CMAKE_BINARY_DIR}/boost")
 
