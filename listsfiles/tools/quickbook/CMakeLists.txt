@@ -38,6 +38,7 @@ add_executable(quickbook
 target_link_libraries(quickbook PRIVATE
   boost::program_options
   boost::filesystem
+  boost::spirit
   )
 
 install(TARGETS quickbook EXPORT ${PROJECT_NAME}Targets

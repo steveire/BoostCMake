@@ -2,19 +2,9 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 cmake_minimum_required(VERSION 2.8.8)
-project(BoostThread C CXX) # C is required for find_package(Threads)
+project(BoostThread)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostChrono)
-ryppl_find_and_use_package(BoostConfig)
-ryppl_find_and_use_package(BoostDateTime)
-ryppl_find_and_use_package(BoostSystem)
-ryppl_find_package(Threads)
-
-include_directories(
-  include
-  )
+find_package(Threads)
 
 if(CMAKE_USE_WIN32_THREADS_INIT)
   set(sources
@@ -33,9 +23,14 @@ add_library(boost_thread
   ${sources}
   )
 
-target_link_libraries(boost_thread
-  boost_chrono
-  boost_date_time
+target_include_directories(boost_thread PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
+  )
+
+target_link_libraries(boost_thread PUBLIC
+  boost::chrono
+  boost::date_time
   ${CMAKE_THREAD_LIBS_INIT}
   )
 
@@ -47,34 +42,19 @@ else()
   set_property(TARGET boost_thread APPEND PROPERTY
     COMPILE_DEFINITIONS "BOOST_THREAD_BUILD_LIB=1"
     )
-  set_target_properties(boost_thread PROPERTIES
-    PREFIX "lib"
-    )
 endif()
 
-ryppl_export(
-  TARGETS
-    boost_thread
-  DEPENDS
-    BoostBind
-    BoostChrono
-    BoostConfig
-    BoostContainer
-    BoostDetail
-    BoostDateTime
-    BoostException
-    BoostFunction
-    BoostFunctional
-    BoostIO
-    BoostInteger
-    BoostMPL
-    BoostMove
-    BoostOptional
-    BoostSmartPtr
-    BoostStaticAssert
-    BoostSystem
-    BoostTypeTraits
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+add_library(boost::thread ALIAS boost_thread)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_thread EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

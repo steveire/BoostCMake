@@ -2,7 +2,7 @@
 git clone --depth 1 $1 $2
 cd $2
 git submodule init
-for i in $(sed -n 's/\[submodule "\(.*\)"\]/\1/p' .gitmodules); do
+for i in $(sed -n 's/\[submodule "\(.*\)"\]/\1/p' .gitmodules | sort); do
     spath=$(git config -f .gitmodules --get submodule.$i.path)
     surl=$(git config -f .gitmodules --get submodule.$i.url)
     git clone --depth 1 $surl $spath

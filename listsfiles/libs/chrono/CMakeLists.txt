@@ -1,20 +1,12 @@
 # Distributed under the Boost Software License, Version 1.0.
 # See http://www.boost.org/LICENSE_1_0.txt
 
-cmake_minimum_required(VERSION 2.8.8)
+cmake_minimum_required(VERSION 2.8.11)
 project(BoostChrono CXX)
-
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostConfig)
-ryppl_find_and_use_package(BoostSystem)
-ryppl_find_and_use_package(BoostRatio)
-
-include_directories(include)
 
 if(CMAKE_SYSTEM MATCHES "Linux")
   find_library(RT_LIBRARY rt)
-endif(CMAKE_SYSTEM MATCHES "Linux") 
+endif() 
 
 add_library(boost_chrono
   src/chrono.cpp
@@ -22,30 +14,27 @@ add_library(boost_chrono
   src/process_cpu_clocks.cpp
   )
 
-target_link_libraries(boost_chrono
-  boost_system
+target_include_directories(boost_chrono PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
+  )
+
+target_link_libraries(boost_chrono PUBLIC
+  boost::system
   ${RT_LIBRARY}
   )
 
-ryppl_export(
-  TARGETS
-    boost_chrono
-  DEPENDS
-    BoostAccumulators
-    BoostConfig
-    BoostDetail
-    BoostException
-    BoostFormat
-    BoostInteger
-    BoostInterprocess
-    BoostMPL
-    BoostMath
-    BoostRatio
-    BoostStaticAssert
-    BoostSystem
-    BoostTypeTraits
-    BoostTypeof
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+add_library(boost::chrono ALIAS boost_chrono)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_chrono EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )
