@@ -4,27 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostBimap)
 
-include(Ryppl)
+add_library(boost::bimap INTERFACE)
 
-ryppl_add_test_subdirectory(test)
+target_include_directories(boost::bimap INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
-ryppl_export(
-  DEPENDS
-    BoostConceptCheck
-    BoostConfig
-    BoostException
-    BoostFunctional
-    BoostIterator
-    BoostLambda
-    BoostMPL
-    BoostMultiIndex
-    BoostPreprocessor
-    BoostPropertyMap
-    BoostStaticAssert
-    BoostTypeTraits
-    BoostUtility
-  RECOMMENDS
-    BoostSerialization
-  INCLUDE_DIRECTORIES
-    include
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost::bimap EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

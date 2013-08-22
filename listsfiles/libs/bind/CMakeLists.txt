@@ -4,18 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostBind)
 
-include(Ryppl)
+add_library(boost::bind INTERFACE)
 
-#boost_documentation(doc/ref.xml)
+target_include_directories(boost::bind INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
-ryppl_add_test_subdirectory(test)
+install(DIRECTORY include/ DESTINATION include)
 
-ryppl_export(
-  DEPENDS
-    BoostConfig
-    BoostDetail
-    BoostSmartPtr
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+install(TARGETS boost::bind EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

@@ -4,36 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostConceptCheck)
 
-include(Ryppl)
+add_library(boost::concept_check INTERFACE)
 
-#ryppl_test_suite(
-#  RUN
-#    #stl_concept_covering
-#    stl_concept_check.cpp
-#    concept_check_test.cpp
-#    class_concept_check_test.cpp
-#    old_concept_pass.cpp
-#  COMPILE_FAIL
-#    concept_check_fail_expected.cpp
-#    class_concept_fail_expected.cpp
-#    where_fail.cpp
-#    usage_fail.cpp
-#    function_requires_fail.cpp
-#    old_concept_function_fail.cpp
-#    old_concept_class_fail.cpp
-#  NO_SINGLE_TARGET
-#  )
+target_include_directories(boost::concept_check INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
+install(DIRECTORY include/ DESTINATION include)
 
-ryppl_export(
-  DEPENDS
-    BoostConfig
-    BoostDetail
-    BoostIterator
-    BoostMPL
-    BoostParameter
-    BoostPreprocessor
-    BoostTypeTraits
-  INCLUDE_DIRECTORIES
-    include
+install(TARGETS boost::concept_check EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

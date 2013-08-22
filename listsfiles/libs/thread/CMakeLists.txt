@@ -29,6 +29,8 @@ target_include_directories(boost_thread PUBLIC
   )
 
 target_link_libraries(boost_thread PUBLIC
+  boost::atomic
+  boost::algorithm
   boost::chrono
   boost::date_time
   ${CMAKE_THREAD_LIBS_INIT}

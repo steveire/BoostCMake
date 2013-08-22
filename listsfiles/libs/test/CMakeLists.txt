@@ -23,6 +23,9 @@ target_include_directories(boost_prg_exec_monitor PUBLIC
 
 target_link_libraries(boost_prg_exec_monitor PUBLIC
   boost::algorithm
+  boost::config
+  boost::detail
+  boost::concept_check
   )
 
 add_library(boost_test_exec_monitor STATIC
@@ -52,9 +55,11 @@ target_include_directories(boost_test_exec_monitor PUBLIC
   )
 
 target_link_libraries(boost_test_exec_monitor PRIVATE
-  boost::array
+  boost::conversion
   boost::algorithm
   boost::math
+  boost::detail
+  boost::concept_check
   boost::timer::header_only
   )
 
@@ -87,7 +92,9 @@ target_include_directories(boost_unit_test_framework PUBLIC
   )
 
 target_link_libraries(boost_unit_test_framework PUBLIC
-  boost::array
+  boost::conversion
+  boost::concept_check
+  boost::detail
   boost::math
   boost::algorithm
   boost::timer::header_only

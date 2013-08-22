@@ -47,8 +47,9 @@ set_property(TARGET boost_mpi APPEND PROPERTY
   COMPILE_DEFINITIONS BOOST_MPI_SOURCE
   )
 
-target_link_libraries(boost_mpi
+target_link_libraries(boost_mpi PUBLIC
   boost::serialization
+  boost::concept_check
   ${MPI_LIBRARIES}
   )
 

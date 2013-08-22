@@ -45,8 +45,11 @@ target_include_directories(boost_iostreams PUBLIC
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
-target_link_libraries(boost_iostreams
+target_link_libraries(boost_iostreams PUBLIC
   ${link_libraries}
+  boost::config
+  boost::concept_check
+  boost::detail
   )
 
 add_library(boost::iostreams ALIAS boost_iostreams)

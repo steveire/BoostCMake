@@ -4,25 +4,31 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostAtomic CXX)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostInteger)
-
-include_directories(include)
-
 add_library(boost_atomic
   src/lockpool.cpp
   )
 
-set_target_properties(boost_atomic PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "${BoostAtomic_SOURCE_DIR}/include"
+target_include_directories(boost_atomic PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-ryppl_export(
-  TARGETS
-    boost_atomic
-  DEPENDS
-    BoostInteger
-  INCLUDE_DIRECTORIES
-    include
+target_link_libraries(boost_atomic PUBLIC
+  boost::config
+  boost::detail
+  )
+
+add_library(boost::atomic ALIAS boost_atomic)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_atomic EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )
