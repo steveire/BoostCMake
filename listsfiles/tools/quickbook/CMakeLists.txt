@@ -35,10 +35,15 @@ add_executable(quickbook
   src/doc_info_grammar.cpp
   )
 
+target_include_directories(quickbook PRIVATE
+  $<TARGET_PROPERTY:boost::iostreams,INTERFACE_INCLUDE_DIRECTORIES>
+  )
+
 target_link_libraries(quickbook PRIVATE
   boost::program_options
   boost::filesystem
   boost::spirit
+  boost::math
   )
 
 install(TARGETS quickbook EXPORT ${PROJECT_NAME}Targets

@@ -21,6 +21,7 @@ target_include_directories(boost_date_time PUBLIC
 
 target_link_libraries(boost_date_time PRIVATE
   boost::array
+  boost::math
   )
 
 add_library(boost::date_time ALIAS boost_date_time)

@@ -20,6 +20,7 @@ target_include_directories(boost_chrono PUBLIC
   )
 
 target_link_libraries(boost_chrono PUBLIC
+  boost::math
   boost::system
   ${RT_LIBRARY}
   )

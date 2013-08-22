@@ -4,15 +4,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostMath CXX)
 
-include(Ryppl)
-include(RypplPrecompileHeader)
-
-ryppl_find_and_use_package(BoostConfig)
-
-include_directories(
-  include
-  src/tr1
-  )
+#include(RypplPrecompileHeader)
 
 set(C99_SOURCES
   acosh
@@ -62,21 +54,33 @@ set(TR1_SOURCES
   sph_neumann
   )
 
+include_directories(src/tr1)
+
+add_library(boost::math INTERFACE)
+target_include_directories(boost::math INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
+
 function(add_math_library name suffix)
   set(sources)
   foreach(src ${ARGN})
     list(APPEND sources "src/tr1/${src}${suffix}.cpp")
   endforeach(src)
-  ryppl_add_pch(${name} sources
-    <boost/math/special_functions.hpp>
-    )
+# ryppl_add_pch(${name} sources
+#   <boost/math/special_functions.hpp>
+#   )
   add_library(boost_math_${name}
     ${sources}
     )
-  ryppl_add_pch_to_target(boost_math_${name}
-    ${PCH_HEADER}
+# ryppl_add_pch_to_target(boost_math_${name}
+#   ${PCH_HEADER}
+#   )
+  target_link_libraries(boost_math_${name} PUBLIC
+    boost::array
+    boost::math
     )
-endfunction(add_math_library)
+endfunction()
 
 add_math_library(tr1  ""  ${TR1_SOURCES})
 add_math_library(tr1f "f" ${TR1_SOURCES})
@@ -85,37 +89,23 @@ add_math_library(c99  ""  ${C99_SOURCES})
 add_math_library(c99f "f" ${C99_SOURCES})
 add_math_library(c99l "l" ${C99_SOURCES})
 
-ryppl_export(
-  TARGETS
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS
+    boost::math
     boost_math_tr1
     boost_math_tr1f
     boost_math_tr1l
     boost_math_c99
     boost_math_c99f
     boost_math_c99l
-  DEPENDS
-    BoostAlgorithm
-    BoostArray
-    BoostConceptCheck
-    BoostConfig
-    BoostConversion
-    BoostDetail
-    BoostException
-    BoostFormat
-    BoostFunction
-    BoostFusion
-    BoostInteger
-    BoostMPL
-    BoostRegex
-    BoostSmartPtr
-    BoostStaticAssert
-    BoostTR1
-    BoostTuple
-    BoostTypeTraits
-    BoostUBLAS
-    BoostUtility
-  RECOMMENDS
-    BoostTest
-  INCLUDE_DIRECTORIES
-    include
+  EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

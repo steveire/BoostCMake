@@ -48,6 +48,7 @@ set_property(TARGET boost_python APPEND PROPERTY
   )
 
 target_link_libraries(boost_python PUBLIC
+  boost::math
   boost::serialization
   ${PYTHON_LIBRARIES}
   )

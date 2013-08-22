@@ -4,11 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostIOStreams C CXX)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostConfig)
-ryppl_find_package(BZip2)
-ryppl_find_package(ZLIB)
+find_package(BZip2)
+find_package(ZLIB)
 
 add_definitions(-DBOOST_IOSTREAMS_USE_DEPRECATED)
 
@@ -18,7 +15,7 @@ if(MSVC)
     /wd4251 # class needs to have dll-interface to be used by clients
     /wd4800 # forcing value to bool 'true' or 'false'
     )
-endif(MSVC)
+endif()
 
 set(sources
   src/file_descriptor.cpp
@@ -43,30 +40,26 @@ add_library(boost_iostreams
   ${sources}
   )
 
+target_include_directories(boost_iostreams PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
+  )
+
 target_link_libraries(boost_iostreams
   ${link_libraries}
   )
 
-ryppl_export(
-  TARGETS
-    boost_iostreams
-  DEPENDS
-    BoostBind
-    BoostConfig
-    BoostDetail
-    BoostException
-    BoostFunction
-    BoostInteger
-    BoostMPL
-    BoostPreprocessor
-    BoostRange
-    BoostRegex
-    BoostSmartPtr
-    BoostStaticAssert
-    BoostTypeTraits
-    BoostUtility
-  RECOMMENDS
-    BoostRandom
-  INCLUDE_DIRECTORIES
-    include
+add_library(boost::iostreams ALIAS boost_iostreams)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_iostreams EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )
