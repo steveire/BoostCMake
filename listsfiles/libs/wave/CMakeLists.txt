@@ -4,22 +4,12 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostWave CXX)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostConfig)
-ryppl_find_and_use_package(BoostThread)
-ryppl_find_and_use_package(BoostSpirit)
-
-include_directories(
-  include
-  )
-
 if(MSVC)
   add_definitions(
     -D_CRT_SECURE_NO_WARNINGS
     -D_SCL_SECURE_NO_WARNINGS
     )
-endif(MSVC)
+endif()
 
 add_library(boost_wave
   src/instantiate_cpp_exprgrammar.cpp
@@ -35,41 +25,41 @@ add_library(boost_wave
   src/cpplexer/re2clex/cpp_re.cpp
   )
 
-target_link_libraries(boost_wave
-  boost_thread
+target_include_directories(boost_wave PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-# # wave currently has problems with filesystem3
-# add_executable(wave
-#   tool/cpp.cpp
-#   )
-# target_link_libraries(wave
-#   boost_wave
-#   )
+target_link_libraries(boost_wave
+  boost::thread
+  boost::spirit
+  boost::filesystem
+  )
 
-ryppl_export(
-  TARGETS
-    boost_wave
-    # wave
-  DEPENDS
-    BoostConceptCheck
-    BoostConfig
-    BoostDetail
-    BoostException
-    BoostFilesystem
-    BoostInteger
-    BoostIterator
-    BoostMPL
-    BoostMultiIndex
-    BoostPool
-    BoostPreprocessor
-    BoostSmartPtr
-    BoostSpirit
-    BoostStaticAssert
-    BoostTypeTraits
-    BoostUtility
-  RECOMMENDS
-    BoostSerialization
-  INCLUDE_DIRECTORIES
-    include
+add_library(boost::wave ALIAS boost_wave)
+
+add_executable(wave
+  tool/cpp.cpp
+  )
+
+target_link_libraries(wave
+  boost::wave
+  boost::timer
+  boost::any
+  boost::serialization
+  boost::foreach
+  boost::program_options
+  )
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_wave wave EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

@@ -49,12 +49,14 @@ target_include_directories(boost_serialization PUBLIC
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
-target_link_libraries(boost_serialization PRIVATE
+target_link_libraries(boost_serialization PUBLIC
   boost::array
   boost::config
   boost::detail
   boost::spirit
   boost::function
+  boost::preprocessor
+  boost::type_traits
   )
 
 add_library(boost_wserialization

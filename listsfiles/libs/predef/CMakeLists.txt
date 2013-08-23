@@ -2,22 +2,18 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 cmake_minimum_required(VERSION 2.8.11)
-project(BoostMPL NONE)
+project(BoostPredef NONE)
 
-add_library(boost::mpl INTERFACE)
+add_library(boost::predef INTERFACE)
 
-target_include_directories(boost::mpl INTERFACE
+target_include_directories(boost::predef INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::mpl INTERFACE
-  boost::preprocessor
-  )
-
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::mpl EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost::predef EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

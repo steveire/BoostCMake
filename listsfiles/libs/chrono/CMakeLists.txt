@@ -23,6 +23,7 @@ target_link_libraries(boost_chrono PUBLIC
   boost::exception
   boost::math::special_functions
   boost::system
+  boost::type_traits
   ${RT_LIBRARY}
   )
 

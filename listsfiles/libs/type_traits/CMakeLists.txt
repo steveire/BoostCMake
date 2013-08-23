@@ -4,19 +4,22 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostTypeTraits NONE)
 
-include(Ryppl)
+add_library(boost::type_traits INTERFACE)
 
-ryppl_add_test_subdirectory(test)
+target_include_directories(boost::type_traits INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
-ryppl_export(
-  DEPENDS
-    BoostConfig
-    BoostDetail
-    BoostMPL
-    BoostPreprocessor
-    BoostStaticAssert
-    BoostTypeof
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+target_link_libraries(boost::type_traits INTERFACE
+  boost::mpl
+  )
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost::type_traits EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

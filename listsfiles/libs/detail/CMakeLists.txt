@@ -14,6 +14,7 @@ target_include_directories(boost::detail INTERFACE
 target_link_libraries(boost::detail INTERFACE
   boost::bind
   boost::config
+  boost::predef
   )
 
 install(DIRECTORY include/ DESTINATION include)

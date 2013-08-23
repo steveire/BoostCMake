@@ -16,6 +16,7 @@ target_include_directories(boost_atomic PUBLIC
 target_link_libraries(boost_atomic PUBLIC
   boost::config
   boost::detail
+  boost::type_traits
   )
 
 add_library(boost::atomic ALIAS boost_atomic)

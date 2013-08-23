@@ -24,6 +24,7 @@ target_link_libraries(boost_filesystem PUBLIC
   boost::system
   boost::exception
   boost::functional
+  boost::type_traits
   )
 
 add_library(boost::filesystem ALIAS boost_filesystem)

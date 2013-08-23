@@ -28,6 +28,7 @@ target_link_libraries(boost_prg_exec_monitor PUBLIC
   boost::concept_check
   boost::exception
   boost::function
+  boost::type_traits
   )
 
 add_library(boost_test_exec_monitor STATIC
@@ -64,6 +65,7 @@ target_link_libraries(boost_test_exec_monitor PRIVATE
   boost::concept_check
   boost::timer::header_only
   boost::function
+  boost::type_traits
   )
 
 add_library(boost_unit_test_framework
@@ -102,6 +104,7 @@ target_link_libraries(boost_unit_test_framework PUBLIC
   boost::algorithm
   boost::timer::header_only
   boost::function
+  boost::type_traits
   )
 
 add_library(boost::prg_exec_monitor ALIAS boost_prg_exec_monitor)

@@ -51,6 +51,7 @@ target_link_libraries(boost_iostreams PUBLIC
   boost::concept_check
   boost::detail
   boost::exception
+  boost::type_traits
   )
 
 add_library(boost::iostreams ALIAS boost_iostreams)
