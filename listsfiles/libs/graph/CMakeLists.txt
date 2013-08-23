@@ -4,66 +4,41 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostGraph CXX)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostPropertyMap)
-ryppl_find_and_use_package(BoostPropertyTree)
-ryppl_find_and_use_package(BoostSerialization)
-ryppl_find_and_use_package(BoostUtility)
-
 add_library(boost_graph
   src/read_graphviz_new.cpp
   src/graphml.cpp
   )
 
-target_link_libraries(boost_graph
-  boost_regex
+target_include_directories(boost_graph PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-ryppl_export(
-  TARGETS
-    boost_graph
-  DEPENDS
-    BoostAlgorithm
-    BoostAny
-    BoostArray
-    BoostBimap
-    BoostBind
-    BoostConceptCheck
-    BoostConfig
-    BoostConversion
-    BoostDetail
-    BoostDisjointSets
-    BoostException
-    BoostForeach
-    BoostFunction
-    BoostFunctional
-    BoostGraphParallel
-    BoostInteger
-    BoostIterator
-    BoostMPL
-    BoostMath
-    BoostMultiIndex
-    BoostOptional
-    BoostParameter
-    BoostPreprocessor
-    BoostPropertyMap
-    BoostPropertyTree
-    BoostRange
-    BoostSmartPtr
-    BoostSpirit
-    BoostStaticAssert
-    BoostTTI
-    BoostTuple
-    BoostTypeTraits
-    BoostTypeof
-    BoostUnordered
-    BoostUtility
-    BoostXpressive
-  RECOMMENDS
-    BoostRandom
-    BoostSerialization
-    BoostTest
-  INCLUDE_DIRECTORIES
-    include
+target_link_libraries(boost_graph PUBLIC
+  boost::any
+  boost::algorithm
+  boost::serialization
+  boost::config
+  boost::detail
+  boost::foreach
+  boost::function
+  boost::fusion
+  boost::exception
+  boost::concept_check
+  boost::conversion
+  )
+
+add_library(boost::graph ALIAS boost_graph)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_graph EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

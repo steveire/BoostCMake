@@ -20,7 +20,8 @@ target_include_directories(boost_chrono PUBLIC
   )
 
 target_link_libraries(boost_chrono PUBLIC
-  boost::math
+  boost::exception
+  boost::math::special_functions
   boost::system
   ${RT_LIBRARY}
   )

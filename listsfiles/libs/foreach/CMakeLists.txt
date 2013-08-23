@@ -4,22 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostForeach NONE)
 
-include(Ryppl)
+add_library(boost::foreach INTERFACE)
 
-#boost_documentation(doc/foreach.qbk)
+target_include_directories(boost::foreach INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
-ryppl_add_test_subdirectory(test)
+install(DIRECTORY include/ DESTINATION include)
 
+install(TARGETS boost::foreach EXPORT ${PROJECT_NAME}Targets)
 
-ryppl_export(
-  DEPENDS
-    BoostConfig
-    BoostDetail
-    BoostIterator
-    BoostMPL
-    BoostRange
-    BoostTypeTraits
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

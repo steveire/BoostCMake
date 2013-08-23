@@ -4,23 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostDynamicBitset)
 
-include(Ryppl)
+add_library(boost::dynamic_bitset INTERFACE)
 
-# ryppl_test_suite(
-#  RUN
-#    dyn_bitset_unit_tests1.cpp
-#    dyn_bitset_unit_tests2.cpp
-#    dyn_bitset_unit_tests3.cpp
-#    dyn_bitset_unit_tests4.cpp
-#  )
+target_include_directories(boost::dynamic_bitset INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
+install(DIRECTORY include/ DESTINATION include)
 
+install(TARGETS boost::dynamic_bitset EXPORT ${PROJECT_NAME}Targets)
 
-ryppl_export(
-  DEPENDS
-    BoostConfig
-    BoostDetail
-    BoostStaticAssert
-  INCLUDE_DIRECTORIES
-    include
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

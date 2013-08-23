@@ -54,6 +54,7 @@ target_link_libraries(boost_serialization PRIVATE
   boost::config
   boost::detail
   boost::spirit
+  boost::function
   )
 
 add_library(boost_wserialization

@@ -56,9 +56,12 @@ foreach(test IN LISTS test_list)
   target_link_libraries(${target} PRIVATE
     boost::accumulators
     boost::serialization
+    boost::foreach
     boost::unit_test_framework
     )
   add_test(NAME ${PROJECT_NAME}.${test}
     COMMAND $<TARGET_FILE:${target}>
     )
 endforeach()
+
+

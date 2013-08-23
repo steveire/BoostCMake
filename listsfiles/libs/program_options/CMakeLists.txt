@@ -25,11 +25,12 @@ target_include_directories(boost_program_options PUBLIC
 
 target_link_libraries(boost_program_options PRIVATE
   boost::any
-  boost::math
+  boost::math::special_functions
   boost::detail
   boost::config
   boost::concept_check
   boost::conversion
+  boost::function
   )
 
 add_library(boost::program_options ALIAS boost_program_options)

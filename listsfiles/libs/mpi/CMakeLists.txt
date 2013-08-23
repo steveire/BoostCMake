@@ -50,6 +50,7 @@ set_property(TARGET boost_mpi APPEND PROPERTY
 target_link_libraries(boost_mpi PUBLIC
   boost::serialization
   boost::concept_check
+  boost::graph
   ${MPI_LIBRARIES}
   )
 

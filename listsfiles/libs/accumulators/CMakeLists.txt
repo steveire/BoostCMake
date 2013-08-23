@@ -7,9 +7,14 @@ project(BoostAccumulators)
 add_subdirectory(test)
 
 add_library(boost::accumulators INTERFACE)
+
 target_include_directories(boost::accumulators INTERFACE
-  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
+
+target_link_libraries(boost::accumulators INTERFACE
+  boost::fusion
   )
 
 install(DIRECTORY include/ DESTINATION include)

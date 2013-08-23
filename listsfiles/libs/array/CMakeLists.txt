@@ -13,6 +13,11 @@ target_include_directories(boost::array INTERFACE
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
+target_link_libraries(boost::array INTERFACE
+  boost::exception
+  boost::functional
+  )
+
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS boost::array EXPORT ${PROJECT_NAME}Targets)

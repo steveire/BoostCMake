@@ -56,8 +56,8 @@ set(TR1_SOURCES
 
 include_directories(src/tr1)
 
-add_library(boost::math INTERFACE)
-target_include_directories(boost::math INTERFACE
+add_library(boost::math::special_functions INTERFACE)
+target_include_directories(boost::math::special_functions INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
@@ -81,8 +81,10 @@ function(add_math_library name suffix)
     boost::concept_check
     boost::config
     boost::detail
-    boost::math
+    boost::math::special_functions
+    boost::format
     )
+  add_library(boost::math::${name} ALIAS boost_math_${name})
 endfunction()
 
 add_math_library(tr1  ""  ${TR1_SOURCES})
@@ -95,7 +97,7 @@ add_math_library(c99l "l" ${C99_SOURCES})
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS
-    boost::math
+    boost::math::special_functions
     boost_math_tr1
     boost_math_tr1f
     boost_math_tr1l

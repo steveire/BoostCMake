@@ -4,26 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostFunction NONE)
 
-include(Ryppl)
+add_library(boost::function INTERFACE)
 
-#boost_documentation(doc/function.xml)
+target_include_directories(boost::function INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
-ryppl_add_test_subdirectory(test)
+install(DIRECTORY include/ DESTINATION include)
 
+install(TARGETS boost::function EXPORT ${PROJECT_NAME}Targets)
 
-ryppl_export(
-  DEPENDS
-    BoostBind
-    BoostConfig
-    BoostDetail
-    BoostException
-    BoostInteger
-    BoostMPL
-    BoostPreprocessor
-    BoostSmartPtr
-    BoostTypeTraits
-    BoostTypeof
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

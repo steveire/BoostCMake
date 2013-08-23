@@ -48,10 +48,12 @@ set_property(TARGET boost_python APPEND PROPERTY
   )
 
 target_link_libraries(boost_python PUBLIC
-  boost::math
+  boost::foreach
+  boost::math::special_functions
   boost::serialization
   boost::conversion
   boost::concept_check
+  boost::graph
   ${PYTHON_LIBRARIES}
   )
 

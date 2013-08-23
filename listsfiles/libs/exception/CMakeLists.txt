@@ -4,19 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostException NONE)
 
-include(Ryppl)
+add_library(boost::exception INTERFACE)
 
-# add_subdirectory(test)
+target_include_directories(boost::exception INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
+install(DIRECTORY include/ DESTINATION include)
 
-ryppl_export(
-  DEPENDS
-    BoostConfig
-    BoostDetail
-    BoostSmartPtr
-    BoostTuple
-    BoostUnits
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+install(TARGETS boost::exception EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

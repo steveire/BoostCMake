@@ -14,6 +14,7 @@ target_include_directories(boost::conversion INTERFACE
 target_link_libraries(boost::conversion INTERFACE
   boost::array
   boost::container
+  boost::math::special_functions
   )
 
 install(DIRECTORY include/ DESTINATION include)

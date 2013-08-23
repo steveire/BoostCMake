@@ -24,7 +24,7 @@ target_link_libraries(boost_date_time PRIVATE
   boost::conversion
   boost::concept_check
   boost::detail
-  boost::math
+  boost::math::special_functions
   )
 
 add_library(boost::date_time ALIAS boost_date_time)

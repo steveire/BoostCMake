@@ -43,8 +43,8 @@ target_link_libraries(quickbook PRIVATE
   boost::program_options
   boost::algorithm
   boost::filesystem
+  boost::foreach
   boost::spirit
-  boost::math
   )
 
 install(TARGETS quickbook EXPORT ${PROJECT_NAME}Targets
