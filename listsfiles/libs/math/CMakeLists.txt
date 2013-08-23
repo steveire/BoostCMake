@@ -83,6 +83,7 @@ function(add_math_library name suffix)
     boost::detail
     boost::math::special_functions
     boost::format
+    boost::fusion
     )
   add_library(boost::math::${name} ALIAS boost_math_${name})
 endfunction()
