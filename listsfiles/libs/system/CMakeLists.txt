@@ -19,6 +19,8 @@ target_include_directories(boost_system PUBLIC
 target_link_libraries(boost_system PUBLIC
   boost::config
   boost::detail
+  boost::integer
+  boost::iterator
   )
 
 add_library(boost::system ALIAS boost_system)
@@ -35,4 +37,3 @@ install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
   DESTINATION CMake
   )
-

@@ -26,6 +26,7 @@ target_link_libraries(boost_date_time PRIVATE
   boost::detail
   boost::math::special_functions
   boost::type_traits
+  boost::integer
   )
 
 add_library(boost::date_time ALIAS boost_date_time)

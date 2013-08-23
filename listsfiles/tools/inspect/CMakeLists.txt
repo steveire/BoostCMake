@@ -4,17 +4,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostInspect CXX)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostAlgorithm)
-ryppl_find_and_use_package(BoostConfig)
-ryppl_find_and_use_package(BoostConversion)
-ryppl_find_and_use_package(BoostFilesystem)
-ryppl_find_and_use_package(BoostRegex)
-ryppl_find_and_use_package(BoostSmartPtr)
-ryppl_find_and_use_package(BoostTest)
-ryppl_find_and_use_package(BoostUtility)
-
 add_executable(inspect
   apple_macro_check.cpp
   ascii_check.cpp
@@ -32,10 +21,18 @@ add_executable(inspect
   unnamed_namespace_check.cpp
   )
 
-target_link_libraries(inspect
-  boost_filesystem
-  boost_system
-  boost_regex
+target_link_libraries(inspect PRIVATE
+  boost::algorithm
+  boost::conversion
+  boost::filesystem
+  boost::regex
   )
 
-ryppl_export(TARGETS inspect)
+install(TARGETS inspect EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
+  )

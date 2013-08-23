@@ -26,6 +26,7 @@ target_link_libraries(boost_graph PUBLIC
   boost::exception
   boost::concept_check
   boost::conversion
+  boost::regex
   )
 
 add_library(boost::graph ALIAS boost_graph)

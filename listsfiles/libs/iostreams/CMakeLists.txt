@@ -48,10 +48,11 @@ target_include_directories(boost_iostreams PUBLIC
 target_link_libraries(boost_iostreams PUBLIC
   ${link_libraries}
   boost::config
-  boost::concept_check
+  boost::range
   boost::detail
   boost::exception
   boost::type_traits
+  boost::integer
   )
 
 add_library(boost::iostreams ALIAS boost_iostreams)

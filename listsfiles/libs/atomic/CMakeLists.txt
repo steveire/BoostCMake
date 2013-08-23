@@ -17,6 +17,7 @@ target_link_libraries(boost_atomic PUBLIC
   boost::config
   boost::detail
   boost::type_traits
+  boost::integer
   )
 
 add_library(boost::atomic ALIAS boost_atomic)

@@ -4,27 +4,12 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostSignals CXX)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostAny)
-ryppl_find_and_use_package(BoostConfig)
-ryppl_find_and_use_package(BoostDetail)
-ryppl_find_and_use_package(BoostFunction)
-ryppl_find_and_use_package(BoostIterator)
-ryppl_find_and_use_package(BoostMPL)
-ryppl_find_and_use_package(BoostOptional)
-ryppl_find_and_use_package(BoostSmartPtr)
-ryppl_find_and_use_package(BoostTypeTraits)
-ryppl_find_and_use_package(BoostUtility)
-
-include_directories(include)
-
 if(MSVC)
   add_definitions(
     /wd4251 # class needs to have dll-interface to be used by clients
     /wd4275 # 'boost::noncopyable' used as base for dll-interface class 
     )
-endif(MSVC)
+endif()
 
 add_library(boost_signals
   src/trackable.cpp
@@ -34,22 +19,32 @@ add_library(boost_signals
   src/slot.cpp
   )
 
-ryppl_add_test_subdirectory(test)
+target_include_directories(boost_signals PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
+  )
 
-ryppl_export(
-  TARGETS
-    boost_signals
-  DEPENDS
-    BoostAny
-    BoostConfig
-    BoostDetail
-    BoostFunction
-    BoostIterator
-    BoostMPL
-    BoostOptional
-    BoostSmartPtr
-    BoostTypeTraits
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+target_link_libraries(boost_signals PUBLIC
+  boost::any
+  boost::config
+  boost::detail
+  boost::exception
+  boost::function
+  boost::type_traits
+  boost::iterator
+  )
+
+add_library(boost::signals ALIAS boost_signals)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_signals EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

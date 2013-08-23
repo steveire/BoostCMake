@@ -11,6 +11,10 @@ target_include_directories(boost::algorithm INTERFACE
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
+target_link_libraries(boost::algorithm INTERFACE
+  boost::range
+  )
+
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS boost::algorithm EXPORT ${PROJECT_NAME}Targets)

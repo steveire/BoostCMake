@@ -4,12 +4,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostAutoIndex CXX)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostArray)
-ryppl_find_and_use_package(BoostFilesystem)
-ryppl_find_and_use_package(BoostProgramOptions)
-
 add_executable(auto_index
   src/auto_index.cpp
   src/file_scanning.cpp
@@ -17,11 +11,20 @@ add_executable(auto_index
   src/tiny_xml.cpp
   )
 
-target_link_libraries(auto_index
-  boost_program_options
-  boost_filesystem
-  boost_system
-  boost_regex
+target_link_libraries(auto_index PRIVATE
+  boost::algorithm
+  boost::program_options
+  boost::filesystem
+  boost::format
+  boost::system
+  boost::regex
   )
 
-ryppl_export(TARGETS auto_index)
+install(TARGETS auto_index EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
+  )

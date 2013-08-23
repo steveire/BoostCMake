@@ -66,6 +66,7 @@ target_link_libraries(boost_test_exec_monitor PRIVATE
   boost::timer::header_only
   boost::function
   boost::type_traits
+  boost::io
   )
 
 add_library(boost_unit_test_framework
@@ -105,6 +106,8 @@ target_link_libraries(boost_unit_test_framework PUBLIC
   boost::timer::header_only
   boost::function
   boost::type_traits
+  boost::iterator
+  boost::io
   )
 
 add_library(boost::prg_exec_monitor ALIAS boost_prg_exec_monitor)

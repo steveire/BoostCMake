@@ -4,23 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostInterprocess NONE)
 
-include(Ryppl)
+add_library(boost::interprocess INTERFACE)
 
-ryppl_export(
-  DEPENDS
-    BoostConfig
-    BoostContainer
-    BoostDetail
-    BoostDateTime
-    BoostInteger
-    BoostIntrusive
-    BoostMath
-    BoostMove
-    BoostPreprocessor
-    BoostStaticAssert
-    BoostTypeTraits
-    BoostUnordered
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+target_include_directories(boost::interprocess INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost::interprocess EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

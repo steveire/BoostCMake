@@ -4,26 +4,23 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostRange NONE)
 
-include(Ryppl)
-  
-ryppl_add_test_subdirectory(test)
+add_library(boost::range INTERFACE)
 
-ryppl_export(
-  DEPENDS
-    BoostAlgorithm
-    BoostArray
-    BoostConceptCheck
-    BoostConfig
-    BoostConversion
-    BoostDetail
-    BoostIterator
-    BoostMPL
-    BoostPreprocessor
-    BoostRegex
-    BoostStaticAssert
-    BoostTuple
-    BoostTypeTraits
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+target_include_directories(boost::range INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
+
+target_link_libraries(boost::range INTERFACE
+  boost::concept_check
+  boost::iterator
+  )
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost::range EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

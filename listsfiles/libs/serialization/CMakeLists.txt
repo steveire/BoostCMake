@@ -57,6 +57,8 @@ target_link_libraries(boost_serialization PUBLIC
   boost::function
   boost::preprocessor
   boost::type_traits
+  boost::io
+  boost::iterator
   )
 
 add_library(boost_wserialization

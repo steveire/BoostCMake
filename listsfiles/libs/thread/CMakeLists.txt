@@ -34,6 +34,7 @@ target_link_libraries(boost_thread PUBLIC
   boost::chrono
   boost::date_time
   boost::function
+  boost::io
   ${CMAKE_THREAD_LIBS_INIT}
   )
 

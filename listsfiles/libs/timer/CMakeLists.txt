@@ -19,6 +19,7 @@ add_library(boost_timer
 target_link_libraries(boost_timer PUBLIC
   boost::timer::header_only
   boost::chrono
+  boost::io
   )
 
 add_library(boost::timer ALIAS boost_timer)

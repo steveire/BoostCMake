@@ -4,11 +4,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostRegex CXX)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostConfig)
-
-ryppl_find_package(ICU)
+find_package(ICU)
 if(ICU_FOUND)
   add_definitions(-DBOOST_HAS_ICU=1)
   include_directories(${ICU_INCLUDE_DIR})
@@ -34,27 +30,32 @@ add_library(boost_regex
   src/usinstances.cpp
   )
 
-target_link_libraries(boost_regex
-  ${ICU_LIBRARIES}
-  ${ICU_I18N_LIBRARIES}
+target_include_directories(boost_regex PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-ryppl_export(
-  TARGETS
-    boost_regex
-  DEPENDS
-    BoostConceptCheck
-    BoostConfig
-    BoostDetail
-    BoostException
-    BoostFunctional
-    BoostInteger
-    BoostIterator
-    BoostMPL
-    BoostSmartPtr
-    BoostStaticAssert
-    BoostTypeTraits
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+target_link_libraries(boost_regex PUBLIC
+  ${ICU_LIBRARIES}
+  ${ICU_I18N_LIBRARIES}
+  boost::config
+  boost::detail
+  boost::exception
+  boost::type_traits
+  boost::functional
+  )
+
+add_library(boost::regex ALIAS boost_regex)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_regex EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )
