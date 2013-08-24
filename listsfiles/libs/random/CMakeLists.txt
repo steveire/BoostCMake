@@ -11,7 +11,7 @@ target_include_directories(boost::random INTERFACE
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::random PUBLIC
+target_link_libraries(boost::random INTERFACE
   boost::config
   )
 

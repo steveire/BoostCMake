@@ -4,29 +4,6 @@
 # See accompanying file LICENSE_1_0.txt or copy at
 #   http://www.boost.org/LICENSE_1_0.txt
 
-file(REMOVE_RECURSE "${CMAKE_BINARY_DIR}/forward")
-file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/forward")
-include_directories("${CMAKE_BINARY_DIR}/forward")
-
-function(forward_headers library)
-  message(STATUS "Forwarding headers of 'boost::${library}'")
-  set(path "${CMAKE_CURRENT_SOURCE_DIR}/libs/${library}/include")
-  file(GLOB_RECURSE headers "${path}/*")
-  foreach(file ${headers})
-    file(RELATIVE_PATH relative "${path}" "${file}")
-    set(target "${CMAKE_BINARY_DIR}/forward/${relative}")
-    get_filename_component(directory "${target}" PATH)
-    file(MAKE_DIRECTORY "${directory}")
-    execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink "${file}" "${target}")
-  endforeach()
-endfunction()
-
-forward_headers(context)
-forward_headers(coroutine)
-forward_headers(log)
-forward_headers(type_erasure)
-
-
 add_subdirectory(libs/accumulators)
 add_subdirectory(libs/algorithm)
 add_subdirectory(libs/any)
@@ -123,7 +100,7 @@ add_subdirectory(libs/tokenizer)
 add_subdirectory(libs/tr1)
 add_subdirectory(libs/tti)
 add_subdirectory(libs/tuple)
-#add_subdirectory(libs/type_erasure)
+add_subdirectory(libs/type_erasure)
 add_subdirectory(libs/typeof)
 add_subdirectory(libs/type_traits)
 add_subdirectory(libs/units)
