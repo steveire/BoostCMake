@@ -4,29 +4,14 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostLocale CXX)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostConfig)
-ryppl_find_and_use_package(BoostFunction)
-ryppl_find_and_use_package(BoostInteger)
-ryppl_find_and_use_package(BoostIterator)
-ryppl_find_and_use_package(BoostSmartPtr)
-ryppl_find_and_use_package(BoostThread)
-ryppl_find_and_use_package(BoostTypeTraits)
-ryppl_find_and_use_package(BoostUnordered)
-ryppl_find_and_use_package(BoostUtility)
-
-ryppl_find_package(Iconv)
-ryppl_find_package(ICU)
-
-include_directories(include)
-
+find_package(Iconv)
 if(ICONV_FOUND)
   option(BOOST_LOCALE_NO_ICONV "Disable iconv library" OFF)
 else()
   set(BOOST_LOCALE_NO_ICONV ON)
 endif()
 
+find_package(ICU)
 if(ICU_FOUND AND ICU_I18N_FOUND)
   option(BOOST_LOCALE_NO_ICU "Disable ICU library/backend" OFF)
 else()
@@ -77,9 +62,7 @@ set(tests
   test/test_generator.cpp
   )
 
-set(link_libraries
-  boost_system
-  )
+set(link_libraries)
 
 if(BOOST_LOCALE_NO_ICONV)
   add_definitions(-DBOOST_LOCALE_NO_ICONV)
@@ -194,24 +177,30 @@ add_library(boost_locale
   ${sources}
   )
 
-target_link_libraries(boost_locale
+target_include_directories(boost_locale PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
+  )
+
+target_link_libraries(boost_locale PRIVATE
   ${link_libraries}
   )
 
-ryppl_add_test_subdirectory(test)
+target_link_libraries(boost_locale PUBLIC
+  boost::system
+  )
 
+add_library(boost::locale ALIAS boost_locale)
 
-ryppl_export(
-  TARGETS
-    boost_locale
-  DEPENDS
-    BoostConfig
-    BoostFunction
-    BoostInteger
-    BoostIterator
-    BoostSmartPtr
-    BoostTypeTraits
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost_locale EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

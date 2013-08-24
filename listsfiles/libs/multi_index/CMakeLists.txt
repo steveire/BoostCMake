@@ -4,29 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostMultiIndex NONE)
 
-include(Ryppl)
-  
-ryppl_add_test_subdirectory(test)
+add_library(boost::multi_index INTERFACE)
 
+target_include_directories(boost::multi_index INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
-ryppl_export(
-  DEPENDS
-    BoostBind
-    BoostConfig
-    BoostDetail
-    BoostException
-    BoostForeach
-    BoostFunctional
-    BoostIterator
-    BoostMPL
-    BoostMath
-    BoostPreprocessor
-    BoostStaticAssert
-    BoostTuple
-    BoostTypeTraits
-    BoostUtility
-  RECOMMENDS
-    BoostSerialization
-  INCLUDE_DIRECTORIES
-    include
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost::multi_index EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

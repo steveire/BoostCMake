@@ -34,6 +34,8 @@ target_link_libraries(boost_wave
   boost::thread
   boost::spirit
   boost::filesystem
+  boost::multi_index
+  boost::pool
   )
 
 add_library(boost::wave ALIAS boost_wave)

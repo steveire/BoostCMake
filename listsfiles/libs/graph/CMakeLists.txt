@@ -27,6 +27,9 @@ target_link_libraries(boost_graph PUBLIC
   boost::concept_check
   boost::conversion
   boost::regex
+  boost::unordered
+  boost::multi_index
+  boost::parameter
   )
 
 add_library(boost::graph ALIAS boost_graph)

@@ -35,6 +35,8 @@ target_link_libraries(boost_thread PUBLIC
   boost::date_time
   boost::function
   boost::io
+  boost::move
+  boost::optional
   ${CMAKE_THREAD_LIBS_INIT}
   )
 

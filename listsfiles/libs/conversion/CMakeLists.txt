@@ -15,6 +15,7 @@ target_link_libraries(boost::conversion INTERFACE
   boost::array
   boost::container
   boost::math::special_functions
+  boost::numeric::conversion
   boost::range
   )
 

@@ -11,6 +11,10 @@ target_include_directories(boost::spirit INTERFACE
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
+target_link_libraries(boost::spirit INTERFACE
+  boost::optional
+  )
+
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS boost::spirit EXPORT ${PROJECT_NAME}Targets)

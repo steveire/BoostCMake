@@ -4,25 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostPhoenix NONE)
 
-include(Ryppl)
+add_library(boost::phoenix INTERFACE)
 
-ryppl_add_test_subdirectory(test)
+target_include_directories(boost::phoenix INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
+install(DIRECTORY include/ DESTINATION include)
 
-ryppl_export(
-  DEPENDS
-    BoostBind
-    BoostConfig
-    BoostDetail
-    BoostFusion
-    BoostMPL
-    BoostPreprocessor
-    BoostProto
-    BoostRange
-    BoostSmartPtr
-    BoostSpirit
-    BoostTypeTraits
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+install(TARGETS boost::phoenix EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

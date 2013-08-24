@@ -4,20 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostUBLAS NONE)
 
-include(Ryppl)
+add_library(boost::ublas INTERFACE)
 
-ryppl_export(
-  DEPENDS
-    BoostConceptCheck
-    BoostConfig
-    BoostMPL
-    BoostSmartPtr
-    BoostStaticAssert
-    BoostTypeTraits
-    BoostTypeof
-    BoostUtility
-  RECOMMENDS
-    BoostSerialization
-  INCLUDE_DIRECTORIES
-    include
+target_include_directories(boost::ublas INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost::ublas EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

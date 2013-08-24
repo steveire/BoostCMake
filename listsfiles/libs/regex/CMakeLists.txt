@@ -43,6 +43,8 @@ target_link_libraries(boost_regex PUBLIC
   boost::exception
   boost::type_traits
   boost::functional
+  boost::integer
+  boost::iterator
   )
 
 add_library(boost::regex ALIAS boost_regex)

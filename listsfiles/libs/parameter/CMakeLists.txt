@@ -4,22 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostParameter NONE)
 
-include(Ryppl)
-  
-ryppl_add_test_subdirectory(test)
+add_library(boost::parameter INTERFACE)
 
+target_include_directories(boost::parameter INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
-ryppl_export(
-  DEPENDS
-    BoostConfig
-    BoostDetail
-    BoostMPL
-    BoostOptional
-    BoostPreprocessor
-    BoostTypeTraits
-    BoostUtility
-  RECOMMENDS
-    BoostPython
-  INCLUDE_DIRECTORIES
-    include
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost::parameter EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

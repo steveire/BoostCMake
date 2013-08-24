@@ -4,23 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostMultiArray NONE)
 
-include(Ryppl)
-  
-ryppl_add_test_subdirectory(test)
+add_library(boost::multi_array INTERFACE)
 
+target_include_directories(boost::multi_array INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
-ryppl_export(
-  DEPENDS
-    BoostArray
-    BoostConceptCheck
-    BoostConfig
-    BoostDetail
-    BoostFunctional
-    BoostIterator
-    BoostMPL
-    BoostStaticAssert
-    BoostTypeTraits
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost::multi_array EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

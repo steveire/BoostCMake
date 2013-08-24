@@ -54,6 +54,7 @@ target_link_libraries(boost_python PUBLIC
   boost::conversion
   boost::concept_check
   boost::graph
+  boost::parameter
   ${PYTHON_LIBRARIES}
   )
 
