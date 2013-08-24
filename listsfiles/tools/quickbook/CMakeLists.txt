@@ -46,6 +46,7 @@ target_link_libraries(quickbook PRIVATE
   boost::foreach
   boost::spirit
   boost::unordered
+  boost::tuple
   )
 
 install(TARGETS quickbook EXPORT ${PROJECT_NAME}Targets

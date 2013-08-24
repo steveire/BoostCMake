@@ -11,6 +11,13 @@ target_include_directories(boost::exception INTERFACE
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
+target_link_libraries(boost::exception INTERFACE
+  boost::detail
+  boost::units
+  boost::utility
+  boost::tuple
+  )
+
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS boost::exception EXPORT ${PROJECT_NAME}Targets)

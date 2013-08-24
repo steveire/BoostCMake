@@ -59,6 +59,9 @@ target_link_libraries(boost_serialization PUBLIC
   boost::type_traits
   boost::io
   boost::iterator
+  boost::utility
+  boost::static_assert
+  boost::smart_ptr
   )
 
 add_library(boost_wserialization

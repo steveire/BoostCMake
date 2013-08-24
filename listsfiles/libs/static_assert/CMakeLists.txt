@@ -4,33 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostStaticAssert NONE)
 
-include(Ryppl)
+add_library(boost::static_assert INTERFACE)
 
-ryppl_export(
-  DEPENDS
-    BoostConfig
-    BoostDetail
-  INCLUDE_DIRECTORIES
-    include
+target_include_directories(boost::static_assert INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-return()
+install(DIRECTORY include/ DESTINATION include)
 
-boost_add_multiple_tests(
-  RUN
-    static_assert_test
-#   static_assert_example_1
-    static_assert_example_2
-    static_assert_example_3
-  COMPILE_FAIL
-    static_assert_test_fail_1
-    static_assert_test_fail_2
-    static_assert_test_fail_3
-    static_assert_test_fail_4
-    static_assert_test_fail_5
-    static_assert_test_fail_6
-    static_assert_test_fail_7
-    static_assert_test_fail_8
-    static_assert_test_fail_9
-    static_assert_test_fail_10
+install(TARGETS boost::static_assert EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

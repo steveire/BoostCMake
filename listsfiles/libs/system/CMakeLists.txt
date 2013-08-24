@@ -21,6 +21,7 @@ target_link_libraries(boost_system PUBLIC
   boost::detail
   boost::integer
   boost::iterator
+  boost::utility
   )
 
 add_library(boost::system ALIAS boost_system)

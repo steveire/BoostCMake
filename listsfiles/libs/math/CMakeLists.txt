@@ -86,6 +86,8 @@ function(add_math_library name suffix)
     boost::fusion
     boost::type_traits
     boost::integer
+    boost::static_assert
+    boost::tr1
     )
   add_library(boost::math::${name} ALIAS boost_math_${name})
 endfunction()

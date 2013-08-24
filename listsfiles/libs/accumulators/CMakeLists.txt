@@ -17,6 +17,8 @@ target_link_libraries(boost::accumulators INTERFACE
   boost::fusion
   boost::parameter
   boost::ublas
+  boost::random
+  boost::tuple
   )
 
 install(DIRECTORY include/ DESTINATION include)

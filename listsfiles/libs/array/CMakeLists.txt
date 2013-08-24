@@ -16,6 +16,7 @@ target_include_directories(boost::array INTERFACE
 target_link_libraries(boost::array INTERFACE
   boost::exception
   boost::functional
+  boost::utility
   )
 
 install(DIRECTORY include/ DESTINATION include)

@@ -110,6 +110,7 @@ target_link_libraries(boost_unit_test_framework PUBLIC
   boost::iterator
   boost::io
   boost::optional
+  boost::smart_ptr
   )
 
 add_library(boost::prg_exec_monitor ALIAS boost_prg_exec_monitor)

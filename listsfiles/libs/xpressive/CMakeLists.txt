@@ -4,40 +4,22 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostXpressive NONE)
 
-include(Ryppl)
+add_library(boost::xpressive INTERFACE)
 
-ryppl_add_test_subdirectory(test)
+target_include_directories(boost::xpressive INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
-ryppl_export(
-  DEPENDS
-    BoostConfig
-    BoostConversion
-    BoostDetail
-    BoostException
-    BoostFusion
-    BoostInteger
-    BoostIterator
-    BoostMPL
-    BoostNumericConversion
-    BoostOptional
-    BoostPreprocessor
-    BoostProto
-    BoostRange
-    BoostSmartPtr
-    BoostStaticAssert
-    BoostTypeTraits
-    BoostTypeof
-    BoostUtility
-#   BoostNumeric 
-    BoostOptional 
-    BoostPreprocessor 
-    BoostProto 
-    BoostRange 
-    BoostSmartPtr 
-    BoostSpirit 
-    BoostTypeTraits 
-    BoostTypeof 
-    BoostUtility 
-  INCLUDE_DIRECTORIES
-    include
+target_link_libraries(boost::xpressive INTERFACE
+  boost::proto
+  )
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(TARGETS boost::xpressive EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

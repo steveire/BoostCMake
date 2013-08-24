@@ -30,6 +30,11 @@ target_link_libraries(boost_graph PUBLIC
   boost::unordered
   boost::multi_index
   boost::parameter
+  boost::property_map
+  boost::property_tree
+  boost::xpressive
+  boost::tuple
+  boost::typeof
   )
 
 add_library(boost::graph ALIAS boost_graph)

@@ -4,30 +4,18 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostSignals2 NONE)
 
-include(Ryppl)
+add_library(boost::signals2 INTERFACE)
 
-ryppl_add_test_subdirectory(test)
+target_include_directories(boost::signals2 INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+  )
 
+install(DIRECTORY include/ DESTINATION include)
 
-ryppl_export(
-  DEPENDS
-    BoostAny
-    BoostBind
-    BoostConfig
-    BoostDetail
-    BoostException
-    BoostFunction
-    BoostIterator
-    BoostMPL
-    BoostMultiIndex
-    BoostOptional
-    BoostParameter
-    BoostPreprocessor
-    BoostSmartPtr
-    BoostTuple
-    BoostTypeTraits
-    BoostUtility
-    BoostVariant
-  INCLUDE_DIRECTORIES
-    include
+install(TARGETS boost::signals2 EXPORT ${PROJECT_NAME}Targets)
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

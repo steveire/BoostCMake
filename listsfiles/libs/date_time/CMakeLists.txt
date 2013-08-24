@@ -27,6 +27,8 @@ target_link_libraries(boost_date_time PRIVATE
   boost::math::special_functions
   boost::type_traits
   boost::integer
+  boost::smart_ptr
+  boost::tokenizer
   )
 
 add_library(boost::date_time ALIAS boost_date_time)

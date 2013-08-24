@@ -13,6 +13,7 @@ target_include_directories(boost::type_traits INTERFACE
 
 target_link_libraries(boost::type_traits INTERFACE
   boost::mpl
+  boost::typeof
   )
 
 install(DIRECTORY include/ DESTINATION include)

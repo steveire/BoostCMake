@@ -18,6 +18,7 @@ target_link_libraries(boost_atomic PUBLIC
   boost::detail
   boost::type_traits
   boost::integer
+  boost::smart_ptr
   )
 
 add_library(boost::atomic ALIAS boost_atomic)

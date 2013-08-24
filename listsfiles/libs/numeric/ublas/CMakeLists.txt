@@ -11,6 +11,10 @@ target_include_directories(boost::ublas INTERFACE
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
+target_link_libraries(boost::ublas INTERFACE
+  boost::typeof
+  )
+
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS boost::ublas EXPORT ${PROJECT_NAME}Targets)

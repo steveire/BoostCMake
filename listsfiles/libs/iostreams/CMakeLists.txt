@@ -53,6 +53,7 @@ target_link_libraries(boost_iostreams PUBLIC
   boost::exception
   boost::type_traits
   boost::integer
+  boost::smart_ptr
   )
 
 add_library(boost::iostreams ALIAS boost_iostreams)

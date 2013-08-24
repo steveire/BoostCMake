@@ -27,6 +27,7 @@ target_link_libraries(boost_filesystem PUBLIC
   boost::type_traits
   boost::range
   boost::io
+  boost::smart_ptr
   )
 
 add_library(boost::filesystem ALIAS boost_filesystem)

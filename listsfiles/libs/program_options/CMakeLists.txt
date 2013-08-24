@@ -31,6 +31,7 @@ target_link_libraries(boost_program_options PRIVATE
   boost::concept_check
   boost::conversion
   boost::function
+  boost::tokenizer
   )
 
 add_library(boost::program_options ALIAS boost_program_options)

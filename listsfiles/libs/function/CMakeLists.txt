@@ -13,6 +13,7 @@ target_include_directories(boost::function INTERFACE
 
 target_link_libraries(boost::function INTERFACE
   boost::integer
+  boost::smart_ptr
   )
 
 install(DIRECTORY include/ DESTINATION include)

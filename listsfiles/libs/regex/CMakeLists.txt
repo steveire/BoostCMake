@@ -45,6 +45,8 @@ target_link_libraries(boost_regex PUBLIC
   boost::functional
   boost::integer
   boost::iterator
+  boost::utility
+  boost::smart_ptr
   )
 
 add_library(boost::regex ALIAS boost_regex)

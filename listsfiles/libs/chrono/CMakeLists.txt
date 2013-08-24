@@ -24,6 +24,7 @@ target_link_libraries(boost_chrono PUBLIC
   boost::math::special_functions
   boost::system
   boost::type_traits
+  boost::ratio
   ${RT_LIBRARY}
   )
 
