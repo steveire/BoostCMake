@@ -4,6 +4,73 @@
 # See accompanying file LICENSE_1_0.txt or copy at
 #   http://www.boost.org/LICENSE_1_0.txt
 
+# Toolset detection.
+if (MSVC60)
+  set(BOOST_TOOLSET "vc6")
+elseif(MSVC70)
+  set(BOOST_TOOLSET "vc7")
+elseif(MSVC71)
+  set(BOOST_TOOLSET "vc71")
+elseif(MSVC80)
+  set(BOOST_TOOLSET "vc80")
+elseif(MSVC90)
+  set(BOOST_TOOLSET "vc90")
+elseif(MSVC10)
+  set(BOOST_TOOLSET "vc100")
+elseif(MSVC11)
+  set(BOOST_TOOLSET "vc110")
+elseif(MSVC12)
+  set(BOOST_TOOLSET "vc120")
+elseif(MSVC)
+  set(BOOST_TOOLSET "vc")
+elseif(BORLAND)
+  set(BOOST_TOOLSET "bcb")
+else()
+  string(TOLOWER "${CMAKE_CXX_COMPILER_ID}" BOOST_TOOLSET)
+  if(CMAKE_CXX_COMPILER_VERSION MATCHES "([0-9]+)[.]([0-9]+)")
+    set(BOOST_TOOLSET "${BOOST_TOOLSET}${CMAKE_MATCH_1}${CMAKE_MATCH_2}")
+  endif()
+endif()
+
+# Append the Boost version number to the versioned name
+string(REPLACE "." "_" boost_version "${BOOST_VERSION}")
+
+# The versioned name starts with the full Boost toolset
+if(WIN32)
+  set(tag_toolset "-${BOOST_TOOLSET}")
+  set(tag_version "-${boost_version}")
+else()
+  set(tag_toolset "")
+  set(tag_version "")
+endif()
+
+# Add -mt for multi-threaded libraries
+if(BUILD_MULTI_THREADED)
+  set(tag_mt "-mt")
+else()
+  set(tag_mt "")
+endif()
+
+# Using the debug version of the runtime library.
+# With Visual C++, this comes automatically with debug
+if(MSVC)
+  set(tag_rtdebug "g")
+else()
+  set(tag_rtdebug "")
+endif()
+
+set(CMAKE_DEBUG_POSTFIX "${tag_toolset}${tag_mt}-${tag_rtdebug}d${tag_version}")
+set(CMAKE_RELEASE_POSTFIX "${tag_toolset}${tag_mt}${tag_version}")
+
+
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/lib")
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin")
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/lib")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/lib")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin")
+
+
 add_subdirectory(libs/accumulators)
 add_subdirectory(libs/algorithm)
 add_subdirectory(libs/any)
