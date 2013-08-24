@@ -2,23 +2,9 @@
 # See http://www.boost.org/LICENSE_1_0.txt
 
 cmake_minimum_required(VERSION 2.8.11)
-project(BoostContext CXX)
+project(BoostContext ASM CXX)
 
-include(Ryppl)
-
-ryppl_find_and_use_package(BoostBind)
-ryppl_find_and_use_package(BoostConfig)
-ryppl_find_and_use_package(BoostDetail)
-ryppl_find_and_use_package(BoostFormat)
-ryppl_find_and_use_package(BoostInteger)
-ryppl_find_and_use_package(BoostMove)
-ryppl_find_and_use_package(BoostPreprocessor)
-ryppl_find_and_use_package(BoostProgramOptions)
-ryppl_find_and_use_package(BoostSmartPtr)
-ryppl_find_and_use_package(BoostSystem)
-ryppl_find_and_use_package(BoostThread)
-ryppl_find_and_use_package(BoostTypeTraits)
-ryppl_find_and_use_package(BoostUtility)
+add_subdirectory(test)
 
 set(abi
   aapcs
@@ -70,44 +56,31 @@ set_property(CACHE BOOST_CONTEXT_BINARY_FORMAT
   )
 
 # TODO:
-set(ASM_CONTEXT_SOURCES
+set(sources
   src/asm/make_x86_64_sysv_elf_gas.S
   src/asm/jump_x86_64_sysv_elf_gas.S
   )
 
-if(WIN32)
-  set(CONTEXT_SOURCES
-    src/seh.cpp
-    src/guarded_stack_allocator_windows.cpp
-    src/utils_windows.cpp
-    )
-else()
-  set(CONTEXT_SOURCES
-    src/guarded_stack_allocator_posix.cpp
-    src/utils_posix.cpp
-    )
-endif()
-
-include_directories(include)
-
 add_library(boost_context
-  src/fcontext.cpp
-  ${ASM_CONTEXT_SOURCES}
-  ${CONTEXT_SOURCES}
+  ${sources}
   )
 
-# add_subdirectory(test)
+target_include_directories(boost_context INTERFACE
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
+  )
 
+add_library(boost::context ALIAS boost_context)
 
+install(DIRECTORY include/ DESTINATION include)
 
-ryppl_export(
-  TARGETS
-    boost_context
-  DEPENDS
-    BoostConfig
-    BoostDetail
-    BoostInteger
-    BoostUtility
-  INCLUDE_DIRECTORIES
-    include
+install(TARGETS boost_context EXPORT ${PROJECT_NAME}Targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  DESTINATION CMake
   )

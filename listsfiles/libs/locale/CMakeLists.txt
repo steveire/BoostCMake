@@ -184,6 +184,7 @@ target_include_directories(boost_locale PUBLIC
 
 target_link_libraries(boost_locale PRIVATE
   ${link_libraries}
+  boost::thread
   )
 
 target_link_libraries(boost_locale PUBLIC
