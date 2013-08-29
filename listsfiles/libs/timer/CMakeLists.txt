@@ -6,7 +6,7 @@ project(BoostTimer CXX)
 
 add_library(boost_timer::header_only INTERFACE)
 add_library(boost::timer::header_only ALIAS boost_timer::header_only)
-target_include_directories(boost::timer::header_only INTERFACE
+target_include_directories(boost_timer::header_only INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

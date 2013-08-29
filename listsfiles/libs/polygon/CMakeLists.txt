@@ -7,7 +7,7 @@ project(BoostPolygon NONE)
 add_library(boost_polygon INTERFACE)
 add_library(boost::polygon ALIAS boost_polygon)
 
-target_include_directories(boost::polygon INTERFACE
+target_include_directories(boost_polygon INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

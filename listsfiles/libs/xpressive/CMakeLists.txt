@@ -7,12 +7,12 @@ project(BoostXpressive NONE)
 add_library(boost_xpressive INTERFACE)
 add_library(boost::xpressive ALIAS boost_xpressive)
 
-target_include_directories(boost::xpressive INTERFACE
+target_include_directories(boost_xpressive INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::xpressive INTERFACE
+target_link_libraries(boost_xpressive INTERFACE
   boost::proto
   )
 

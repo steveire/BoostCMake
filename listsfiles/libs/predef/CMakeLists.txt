@@ -7,7 +7,7 @@ project(BoostPredef NONE)
 add_library(boost_predef INTERFACE)
 add_library(boost::predef ALIAS boost_predef)
 
-target_include_directories(boost::predef INTERFACE
+target_include_directories(boost_predef INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

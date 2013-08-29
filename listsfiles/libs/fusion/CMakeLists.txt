@@ -7,7 +7,7 @@ project(BoostFusion NONE)
 add_library(boost_fusion INTERFACE)
 add_library(boost::fusion ALIAS boost_fusion)
 
-target_include_directories(boost::fusion INTERFACE
+target_include_directories(boost_fusion INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

@@ -7,12 +7,12 @@ project(BoostMPL NONE)
 add_library(boost_mpl INTERFACE)
 add_library(boost::mpl ALIAS boost_mpl)
 
-target_include_directories(boost::mpl INTERFACE
+target_include_directories(boost_mpl INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::mpl INTERFACE
+target_link_libraries(boost_mpl INTERFACE
   boost::preprocessor
   )
 

@@ -7,7 +7,7 @@ project(BoostGIL NONE)
 add_library(boost_gil INTERFACE)
 add_library(boost::gil ALIAS boost_gil)
 
-target_include_directories(boost::gil INTERFACE
+target_include_directories(boost_gil INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

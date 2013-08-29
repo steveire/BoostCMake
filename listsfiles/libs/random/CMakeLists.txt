@@ -7,12 +7,12 @@ project(BoostRandom CXX)
 add_library(boost_random INTERFACE)
 add_library(boost::random ALIAS boost_random)
 
-target_include_directories(boost::random INTERFACE
+target_include_directories(boost_random INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::random INTERFACE
+target_link_libraries(boost_random INTERFACE
   boost::config
   )
 

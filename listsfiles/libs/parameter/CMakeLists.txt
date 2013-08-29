@@ -7,7 +7,7 @@ project(BoostParameter NONE)
 add_library(boost_parameter INTERFACE)
 add_library(boost::parameter ALIAS boost_parameter)
 
-target_include_directories(boost::parameter INTERFACE
+target_include_directories(boost_parameter INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

@@ -7,7 +7,7 @@ project(BoostFunctionTypes NONE)
 add_library(boost_function_types INTERFACE)
 add_library(boost::function_types ALIAS boost_function_types)
 
-target_include_directories(boost::function_types INTERFACE
+target_include_directories(boost_function_types INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

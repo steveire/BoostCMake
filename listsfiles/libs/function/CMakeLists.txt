@@ -7,12 +7,12 @@ project(BoostFunction NONE)
 add_library(boost_function INTERFACE)
 add_library(boost::function ALIAS boost_function)
 
-target_include_directories(boost::function INTERFACE
+target_include_directories(boost_function INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::function INTERFACE
+target_link_libraries(boost_function INTERFACE
   boost::integer
   boost::smart_ptr
   )

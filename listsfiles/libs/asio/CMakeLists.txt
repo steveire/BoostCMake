@@ -7,7 +7,7 @@ project(BoostAsio)
 add_library(boost_asio INTERFACE)
 add_library(boost::asio ALIAS boost_asio)
 
-target_include_directories(boost::asio INTERFACE
+target_include_directories(boost_asio INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

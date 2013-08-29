@@ -7,12 +7,12 @@ project(BoostTypeTraits NONE)
 add_library(boost_type_traits INTERFACE)
 add_library(boost::type_traits ALIAS boost_type_traits)
 
-target_include_directories(boost::type_traits INTERFACE
+target_include_directories(boost_type_traits INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::type_traits INTERFACE
+target_link_libraries(boost_type_traits INTERFACE
   boost::mpl
   boost::typeof
   )

@@ -7,7 +7,7 @@ project(BoostLockfree NONE)
 add_library(boost_lockfree INTERFACE)
 add_library(boost::lockfree ALIAS boost_lockfree)
 
-target_include_directories(boost::lockfree INTERFACE
+target_include_directories(boost_lockfree INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

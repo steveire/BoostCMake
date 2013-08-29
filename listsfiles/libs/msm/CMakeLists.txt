@@ -7,7 +7,7 @@ project(BoostMSM NONE)
 add_library(boost_msm INTERFACE)
 add_library(boost::msm ALIAS boost_msm)
 
-target_include_directories(boost::msm INTERFACE
+target_include_directories(boost_msm INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

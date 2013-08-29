@@ -7,7 +7,7 @@ project(BoostFlyweight NONE)
 add_library(boost_flyweight INTERFACE)
 add_library(boost::flyweight ALIAS boost_flyweight)
 
-target_include_directories(boost::flyweight INTERFACE
+target_include_directories(boost_flyweight INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

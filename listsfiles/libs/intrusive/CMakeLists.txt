@@ -7,7 +7,7 @@ project(BoostIntrusive NONE)
 add_library(boost_intrusive INTERFACE)
 add_library(boost::intrusive ALIAS boost_intrusive)
 
-target_include_directories(boost::intrusive INTERFACE
+target_include_directories(boost_intrusive INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

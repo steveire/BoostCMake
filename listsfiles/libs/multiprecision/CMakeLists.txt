@@ -7,7 +7,7 @@ project(BoostMultiprecision NONE)
 add_library(boost_multiprecision INTERFACE)
 add_library(boost::multiprecision ALIAS boost_multiprecision)
 
-target_include_directories(boost::multiprecision INTERFACE
+target_include_directories(boost_multiprecision INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

@@ -7,7 +7,7 @@ project(BoostContainer)
 add_library(boost_container INTERFACE)
 add_library(boost::container ALIAS boost_container)
 
-target_include_directories(boost::container INTERFACE
+target_include_directories(boost_container INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

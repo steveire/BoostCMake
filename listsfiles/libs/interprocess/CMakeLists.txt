@@ -7,7 +7,7 @@ project(BoostInterprocess NONE)
 add_library(boost_interprocess INTERFACE)
 add_library(boost::interprocess ALIAS boost_interprocess)
 
-target_include_directories(boost::interprocess INTERFACE
+target_include_directories(boost_interprocess INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

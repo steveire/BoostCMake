@@ -7,7 +7,7 @@ project(BoostConfig)
 add_library(boost_config INTERFACE)
 add_library(boost::config ALIAS boost_config)
 
-target_include_directories(boost::config INTERFACE
+target_include_directories(boost_config INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

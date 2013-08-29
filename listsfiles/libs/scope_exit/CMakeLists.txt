@@ -7,7 +7,7 @@ project(BoostScopeExit NONE)
 add_library(boost_scope_exit INTERFACE)
 add_library(boost::scope_exit ALIAS boost_scope_exit)
 
-target_include_directories(boost::scope_exit INTERFACE
+target_include_directories(boost_scope_exit INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

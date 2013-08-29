@@ -7,7 +7,7 @@ project(BoostICL NONE)
 add_library(boost_icl INTERFACE)
 add_library(boost::icl ALIAS boost_icl)
 
-target_include_directories(boost::icl INTERFACE
+target_include_directories(boost_icl INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

@@ -7,7 +7,7 @@ project(BoostMove NONE)
 add_library(boost_move INTERFACE)
 add_library(boost::move ALIAS boost_move)
 
-target_include_directories(boost::move INTERFACE
+target_include_directories(boost_move INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

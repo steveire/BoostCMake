@@ -7,7 +7,7 @@ project(BoostBimap)
 add_library(boost_bimap INTERFACE)
 add_library(boost::bimap ALIAS boost_bimap)
 
-target_include_directories(boost::bimap INTERFACE
+target_include_directories(boost_bimap INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

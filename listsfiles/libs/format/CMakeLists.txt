@@ -7,12 +7,12 @@ project(BoostFormat NONE)
 add_library(boost_format INTERFACE)
 add_library(boost::format ALIAS boost_format)
 
-target_include_directories(boost::format INTERFACE
+target_include_directories(boost_format INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::format INTERFACE
+target_link_libraries(boost_format INTERFACE
   boost::optional
   boost::smart_ptr
   )

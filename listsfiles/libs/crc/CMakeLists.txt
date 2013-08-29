@@ -7,7 +7,7 @@ project(BoostCRC)
 add_library(boost_crc INTERFACE)
 add_library(boost::crc ALIAS boost_crc)
 
-target_include_directories(boost::crc INTERFACE
+target_include_directories(boost_crc INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

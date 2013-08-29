@@ -7,7 +7,7 @@ project(BoostConceptCheck)
 add_library(boost_concept_check INTERFACE)
 add_library(boost::concept_check ALIAS boost_concept_check)
 
-target_include_directories(boost::concept_check INTERFACE
+target_include_directories(boost_concept_check INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

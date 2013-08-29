@@ -7,7 +7,7 @@ project(BoostVariant NONE)
 add_library(boost_variant INTERFACE)
 add_library(boost::variant ALIAS boost_variant)
 
-target_include_directories(boost::variant INTERFACE
+target_include_directories(boost_variant INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

@@ -7,7 +7,7 @@ project(BoostLocalFunction CXX)
 add_library(boost_local_function INTERFACE)
 add_library(boost::local_function ALIAS boost_local_function)
 
-target_include_directories(boost::local_function INTERFACE
+target_include_directories(boost_local_function INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

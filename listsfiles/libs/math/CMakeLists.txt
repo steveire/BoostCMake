@@ -58,7 +58,7 @@ include_directories(src/tr1)
 
 add_library(boost_math::special_functions INTERFACE)
 add_library(boost::math::special_functions ALIAS boost_math::special_functions)
-target_include_directories(boost::math::special_functions INTERFACE
+target_include_directories(boost_math::special_functions INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

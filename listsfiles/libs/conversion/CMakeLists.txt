@@ -7,12 +7,12 @@ project(BoostConversion)
 add_library(boost_conversion INTERFACE)
 add_library(boost::conversion ALIAS boost_conversion)
 
-target_include_directories(boost::conversion INTERFACE
+target_include_directories(boost_conversion INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::conversion INTERFACE
+target_link_libraries(boost_conversion INTERFACE
   boost::array
   boost::container
   boost::math::special_functions

@@ -7,12 +7,12 @@ project(BoostDetail)
 add_library(boost_detail INTERFACE)
 add_library(boost::detail ALIAS boost_detail)
 
-target_include_directories(boost::detail INTERFACE
+target_include_directories(boost_detail INTERFACE
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
-target_link_libraries(boost::detail INTERFACE
+target_link_libraries(boost_detail INTERFACE
   boost::bind
   boost::config
   boost::predef

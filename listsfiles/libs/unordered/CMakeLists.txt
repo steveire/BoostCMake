@@ -7,12 +7,12 @@ project(BoostUnordered NONE)
 add_library(boost_unordered INTERFACE)
 add_library(boost::unordered ALIAS boost_unordered)
 
-target_include_directories(boost::unordered INTERFACE
+target_include_directories(boost_unordered INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::unordered INTERFACE
+target_link_libraries(boost_unordered INTERFACE
   boost::move
   )
 

@@ -7,12 +7,12 @@ project(BoostException NONE)
 add_library(boost_exception INTERFACE)
 add_library(boost::exception ALIAS boost_exception)
 
-target_include_directories(boost::exception INTERFACE
+target_include_directories(boost_exception INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::exception INTERFACE
+target_link_libraries(boost_exception INTERFACE
   boost::detail
   boost::units
   boost::utility

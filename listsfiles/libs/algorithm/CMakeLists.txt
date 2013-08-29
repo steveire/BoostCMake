@@ -7,12 +7,12 @@ project(BoostAlgorithm)
 add_library(boost_algorithm INTERFACE)
 add_library(boost::algorithm ALIAS boost_algorithm)
 
-target_include_directories(boost::algorithm INTERFACE
+target_include_directories(boost_algorithm INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::algorithm INTERFACE
+target_link_libraries(boost_algorithm INTERFACE
   boost::range
   )
 

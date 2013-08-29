@@ -7,7 +7,7 @@ project(BoostPhoenix NONE)
 add_library(boost_phoenix INTERFACE)
 add_library(boost::phoenix ALIAS boost_phoenix)
 
-target_include_directories(boost::phoenix INTERFACE
+target_include_directories(boost_phoenix INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

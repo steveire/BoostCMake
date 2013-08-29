@@ -7,7 +7,7 @@ project(BoostBind)
 add_library(boost_bind INTERFACE)
 add_library(boost::bind ALIAS boost_bind)
 
-target_include_directories(boost::bind INTERFACE
+target_include_directories(boost_bind INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

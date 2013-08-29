@@ -7,7 +7,7 @@ project(BoostDisjointSets)
 add_library(boost_disjoint_sets INTERFACE)
 add_library(boost::disjoint_sets ALIAS boost_disjoint_sets)
 
-target_include_directories(boost::disjoint_sets INTERFACE
+target_include_directories(boost_disjoint_sets INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

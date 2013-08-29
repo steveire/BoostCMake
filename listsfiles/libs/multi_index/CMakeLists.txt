@@ -7,7 +7,7 @@ project(BoostMultiIndex NONE)
 add_library(boost_multi_index INTERFACE)
 add_library(boost::multi_index ALIAS boost_multi_index)
 
-target_include_directories(boost::multi_index INTERFACE
+target_include_directories(boost_multi_index INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

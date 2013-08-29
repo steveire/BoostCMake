@@ -7,7 +7,7 @@ project(BoostCircularBuffer)
 add_library(boost_circular_buffer INTERFACE)
 add_library(boost::circular_buffer ALIAS boost_circular_buffer)
 
-target_include_directories(boost::circular_buffer INTERFACE
+target_include_directories(boost_circular_buffer INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

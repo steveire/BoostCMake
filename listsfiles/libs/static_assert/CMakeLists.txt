@@ -7,7 +7,7 @@ project(BoostStaticAssert NONE)
 add_library(boost_static_assert INTERFACE)
 add_library(boost::static_assert ALIAS boost_static_assert)
 
-target_include_directories(boost::static_assert INTERFACE
+target_include_directories(boost_static_assert INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

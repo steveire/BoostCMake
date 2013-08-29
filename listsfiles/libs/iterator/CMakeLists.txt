@@ -7,7 +7,7 @@ project(BoostIterator NONE)
 add_library(boost_iterator INTERFACE)
 add_library(boost::iterator ALIAS boost_iterator)
 
-target_include_directories(boost::iterator INTERFACE
+target_include_directories(boost_iterator INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

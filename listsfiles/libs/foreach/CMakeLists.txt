@@ -7,7 +7,7 @@ project(BoostForeach NONE)
 add_library(boost_foreach INTERFACE)
 add_library(boost::foreach ALIAS boost_foreach)
 
-target_include_directories(boost::foreach INTERFACE
+target_include_directories(boost_foreach INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

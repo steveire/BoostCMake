@@ -7,12 +7,12 @@ project(BoostUBLAS NONE)
 add_library(boost_ublas INTERFACE)
 add_library(boost::ublas ALIAS boost_ublas)
 
-target_include_directories(boost::ublas INTERFACE
+target_include_directories(boost_ublas INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::ublas INTERFACE
+target_link_libraries(boost_ublas INTERFACE
   boost::typeof
   )
 

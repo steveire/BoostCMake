@@ -7,7 +7,7 @@ project(BoostUnits NONE)
 add_library(boost_units INTERFACE)
 add_library(boost::units ALIAS boost_units)
 
-target_include_directories(boost::units INTERFACE
+target_include_directories(boost_units INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

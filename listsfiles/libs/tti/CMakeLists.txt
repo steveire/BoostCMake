@@ -7,7 +7,7 @@ project(BoostTTI NONE)
 add_library(boost_tti INTERFACE)
 add_library(boost::tti ALIAS boost_tti)
 
-target_include_directories(boost::tti INTERFACE
+target_include_directories(boost_tti INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

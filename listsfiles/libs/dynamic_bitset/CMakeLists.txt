@@ -7,7 +7,7 @@ project(BoostDynamicBitset)
 add_library(boost_dynamic_bitset INTERFACE)
 add_library(boost::dynamic_bitset ALIAS boost_dynamic_bitset)
 
-target_include_directories(boost::dynamic_bitset INTERFACE
+target_include_directories(boost_dynamic_bitset INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

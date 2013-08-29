@@ -7,7 +7,7 @@ project(BoostNumericInterval NONE)
 add_library(boost_numeric::interval INTERFACE)
 add_library(boost::numeric::interval ALIAS boost_numeric::interval)
 
-target_include_directories(boost::numeric::interval INTERFACE
+target_include_directories(boost_numeric::interval INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )

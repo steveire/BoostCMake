@@ -7,12 +7,12 @@ project(BoostInteger NONE)
 add_library(boost_integer INTERFACE)
 add_library(boost::integer ALIAS boost_integer)
 
-target_include_directories(boost::integer INTERFACE
+target_include_directories(boost_integer INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::integer INTERFACE
+target_link_libraries(boost_integer INTERFACE
   boost::static_assert
   )
 

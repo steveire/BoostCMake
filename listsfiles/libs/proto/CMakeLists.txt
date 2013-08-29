@@ -7,7 +7,7 @@ project(BoostProto NONE)
 add_library(boost_proto INTERFACE)
 add_library(boost::proto ALIAS boost_proto)
 
-target_include_directories(boost::proto INTERFACE
+target_include_directories(boost_proto INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
