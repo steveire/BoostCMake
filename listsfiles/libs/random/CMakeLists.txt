@@ -6,6 +6,7 @@ project(BoostRandom CXX)
 
 add_library(boost_random INTERFACE)
 add_library(boost::random ALIAS boost_random)
+set_property(TARGET boost_random PROPERTY EXPORT_NAME random)
 
 target_include_directories(boost_random INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -26,6 +27,7 @@ target_link_libraries(boost_random PUBLIC
   )
 
 add_library(boost::random::device ALIAS boost_random)
+set_property(TARGET boost_random PROPERTY EXPORT_NAME random)
 
 install(DIRECTORY include/ DESTINATION include)
 

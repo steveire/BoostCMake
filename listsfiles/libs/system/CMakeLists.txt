@@ -25,6 +25,7 @@ target_link_libraries(boost_system PUBLIC
   )
 
 add_library(boost::system ALIAS boost_system)
+set_property(TARGET boost_system PROPERTY EXPORT_NAME system)
 
 install(DIRECTORY include/ DESTINATION include)
 

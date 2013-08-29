@@ -6,6 +6,7 @@ project(BoostRational NONE)
 
 add_library(boost_rational INTERFACE)
 add_library(boost::rational ALIAS boost_rational)
+set_property(TARGET boost_rational PROPERTY EXPORT_NAME rational)
 
 target_include_directories(boost_rational INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

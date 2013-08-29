@@ -6,6 +6,7 @@ project(BoostCompatibility)
 
 add_library(boost_compatibility INTERFACE)
 add_library(boost::compatibility ALIAS boost_compatibility)
+set_property(TARGET boost_compatibility PROPERTY EXPORT_NAME compatibility)
 
 target_include_directories(boost_compatibility INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

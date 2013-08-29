@@ -6,6 +6,7 @@ project(BoostTokenizer NONE)
 
 add_library(boost_tokenizer INTERFACE)
 add_library(boost::tokenizer ALIAS boost_tokenizer)
+set_property(TARGET boost_tokenizer PROPERTY EXPORT_NAME tokenizer)
 
 target_include_directories(boost_tokenizer INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

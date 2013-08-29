@@ -6,6 +6,7 @@ project(BoostGeometry NONE)
 
 add_library(boost_geometry INTERFACE)
 add_library(boost::geometry ALIAS boost_geometry)
+set_property(TARGET boost_geometry PROPERTY EXPORT_NAME geometry)
 
 target_include_directories(boost_geometry INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

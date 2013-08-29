@@ -28,6 +28,7 @@ target_link_libraries(boost_graph_parallel PUBLIC
   )
 
 add_library(boost::graph::parallel ALIAS boost_graph_parallel)
+set_property(TARGET boost_graph_parallel PROPERTY EXPORT_NAME graph_parallel)
 
 install(DIRECTORY include/ DESTINATION include)
 

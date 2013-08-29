@@ -6,6 +6,7 @@ project(BoostTypeErasure NONE)
 
 add_library(boost_type_erasure INTERFACE)
 add_library(boost::type_erasure ALIAS boost_type_erasure)
+set_property(TARGET boost_type_erasure PROPERTY EXPORT_NAME type_erasure)
 
 target_include_directories(boost_type_erasure INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

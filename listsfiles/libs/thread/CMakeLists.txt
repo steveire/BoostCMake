@@ -51,6 +51,7 @@ else()
 endif()
 
 add_library(boost::thread ALIAS boost_thread)
+set_property(TARGET boost_thread PROPERTY EXPORT_NAME thread)
 
 install(DIRECTORY include/ DESTINATION include)
 

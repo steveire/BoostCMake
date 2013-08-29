@@ -6,6 +6,7 @@ project(BoostBimap)
 
 add_library(boost_bimap INTERFACE)
 add_library(boost::bimap ALIAS boost_bimap)
+set_property(TARGET boost_bimap PROPERTY EXPORT_NAME bimap)
 
 target_include_directories(boost_bimap INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

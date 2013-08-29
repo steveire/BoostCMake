@@ -6,6 +6,7 @@ project(BoostPreprocessor NONE)
 
 add_library(boost_preprocessor INTERFACE)
 add_library(boost::preprocessor ALIAS boost_preprocessor)
+set_property(TARGET boost_preprocessor PROPERTY EXPORT_NAME preprocessor)
 
 target_include_directories(boost_preprocessor INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

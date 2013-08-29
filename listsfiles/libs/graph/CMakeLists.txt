@@ -38,6 +38,7 @@ target_link_libraries(boost_graph PUBLIC
   )
 
 add_library(boost::graph ALIAS boost_graph)
+set_property(TARGET boost_graph PROPERTY EXPORT_NAME graph)
 
 install(DIRECTORY include/ DESTINATION include)
 

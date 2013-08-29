@@ -6,6 +6,7 @@ project(BoostUUID NONE)
 
 add_library(boost_uuid INTERFACE)
 add_library(boost::uuid ALIAS boost_uuid)
+set_property(TARGET boost_uuid PROPERTY EXPORT_NAME uuid)
 
 target_include_directories(boost_uuid INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

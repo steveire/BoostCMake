@@ -6,6 +6,7 @@ project(BoostVariant NONE)
 
 add_library(boost_variant INTERFACE)
 add_library(boost::variant ALIAS boost_variant)
+set_property(TARGET boost_variant PROPERTY EXPORT_NAME variant)
 
 target_include_directories(boost_variant INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -6,6 +6,7 @@ project(BoostXpressive NONE)
 
 add_library(boost_xpressive INTERFACE)
 add_library(boost::xpressive ALIAS boost_xpressive)
+set_property(TARGET boost_xpressive PROPERTY EXPORT_NAME xpressive)
 
 target_include_directories(boost_xpressive INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -6,6 +6,7 @@ project(BoostPolygon NONE)
 
 add_library(boost_polygon INTERFACE)
 add_library(boost::polygon ALIAS boost_polygon)
+set_property(TARGET boost_polygon PROPERTY EXPORT_NAME polygon)
 
 target_include_directories(boost_polygon INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

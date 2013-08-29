@@ -114,8 +114,11 @@ target_link_libraries(boost_unit_test_framework PUBLIC
   )
 
 add_library(boost::prg_exec_monitor ALIAS boost_prg_exec_monitor)
+set_property(TARGET boost_prg_exec_monitor PROPERTY EXPORT_NAME prg_exec_monitor)
 add_library(boost::test_exec_monitor ALIAS boost_test_exec_monitor)
+set_property(TARGET boost_test_exec_monitor PROPERTY EXPORT_NAME test_exec_monitor)
 add_library(boost::unit_test_framework ALIAS boost_unit_test_framework)
+set_property(TARGET boost_unit_test_framework PROPERTY EXPORT_NAME unit_test_framework)
 
 install(DIRECTORY include/ DESTINATION include)
 

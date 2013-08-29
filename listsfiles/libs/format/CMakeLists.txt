@@ -6,6 +6,7 @@ project(BoostFormat NONE)
 
 add_library(boost_format INTERFACE)
 add_library(boost::format ALIAS boost_format)
+set_property(TARGET boost_format PROPERTY EXPORT_NAME format)
 
 target_include_directories(boost_format INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

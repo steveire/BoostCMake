@@ -22,6 +22,7 @@ target_link_libraries(boost_atomic PUBLIC
   )
 
 add_library(boost::atomic ALIAS boost_atomic)
+set_property(TARGET boost_atomic PROPERTY EXPORT_NAME atomic)
 
 install(DIRECTORY include/ DESTINATION include)
 

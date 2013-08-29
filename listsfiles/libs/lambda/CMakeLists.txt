@@ -6,6 +6,7 @@ project(BoostLambda NONE)
 
 add_library(boost_lambda INTERFACE)
 add_library(boost::lambda ALIAS boost_lambda)
+set_property(TARGET boost_lambda PROPERTY EXPORT_NAME lambda)
 
 target_include_directories(boost_lambda INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

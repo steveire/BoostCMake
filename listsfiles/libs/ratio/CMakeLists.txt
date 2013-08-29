@@ -6,6 +6,7 @@ project(BoostRatio NONE)
 
 add_library(boost_ratio INTERFACE)
 add_library(boost::ratio ALIAS boost_ratio)
+set_property(TARGET boost_ratio PROPERTY EXPORT_NAME ratio)
 
 target_include_directories(boost_ratio INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

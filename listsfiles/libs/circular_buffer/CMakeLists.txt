@@ -6,6 +6,7 @@ project(BoostCircularBuffer)
 
 add_library(boost_circular_buffer INTERFACE)
 add_library(boost::circular_buffer ALIAS boost_circular_buffer)
+set_property(TARGET boost_circular_buffer PROPERTY EXPORT_NAME circular_buffer)
 
 target_include_directories(boost_circular_buffer INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

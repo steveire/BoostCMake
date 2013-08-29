@@ -6,6 +6,7 @@ project(BoostAssign)
 
 add_library(boost_assign INTERFACE)
 add_library(boost::assign ALIAS boost_assign)
+set_property(TARGET boost_assign PROPERTY EXPORT_NAME assign)
 
 target_include_directories(boost_assign INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

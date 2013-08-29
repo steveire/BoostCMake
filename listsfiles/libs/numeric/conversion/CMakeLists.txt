@@ -6,6 +6,7 @@ project(BoostNumericConversion NONE)
 
 add_library(boost_numeric::conversion INTERFACE)
 add_library(boost::numeric::conversion ALIAS boost_numeric::conversion)
+set_property(TARGET boost_numeric::conversion PROPERTY EXPORT_NAME numeric::conversion)
 
 target_include_directories(boost_numeric::conversion INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

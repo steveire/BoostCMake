@@ -6,6 +6,7 @@ project(BoostSpirit NONE)
 
 add_library(boost_spirit INTERFACE)
 add_library(boost::spirit ALIAS boost_spirit)
+set_property(TARGET boost_spirit PROPERTY EXPORT_NAME spirit)
 
 target_include_directories(boost_spirit INTERFACE
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"

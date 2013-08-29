@@ -6,6 +6,7 @@ project(BoostInteger NONE)
 
 add_library(boost_integer INTERFACE)
 add_library(boost::integer ALIAS boost_integer)
+set_property(TARGET boost_integer PROPERTY EXPORT_NAME integer)
 
 target_include_directories(boost_integer INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

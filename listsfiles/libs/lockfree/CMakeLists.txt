@@ -6,6 +6,7 @@ project(BoostLockfree NONE)
 
 add_library(boost_lockfree INTERFACE)
 add_library(boost::lockfree ALIAS boost_lockfree)
+set_property(TARGET boost_lockfree PROPERTY EXPORT_NAME lockfree)
 
 target_include_directories(boost_lockfree INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

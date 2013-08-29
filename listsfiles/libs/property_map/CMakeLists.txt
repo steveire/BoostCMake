@@ -6,6 +6,7 @@ project(BoostPropertyMap NONE)
 
 add_library(boost_property_map INTERFACE)
 add_library(boost::property_map ALIAS boost_property_map)
+set_property(TARGET boost_property_map PROPERTY EXPORT_NAME property_map)
 
 target_include_directories(boost_property_map INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -32,6 +32,7 @@ target_link_libraries(boost_date_time PRIVATE
   )
 
 add_library(boost::date_time ALIAS boost_date_time)
+set_property(TARGET boost_date_time PROPERTY EXPORT_NAME date_time)
 
 install(DIRECTORY include/ DESTINATION include)
 

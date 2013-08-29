@@ -6,6 +6,7 @@ project(BoostFusion NONE)
 
 add_library(boost_fusion INTERFACE)
 add_library(boost::fusion ALIAS boost_fusion)
+set_property(TARGET boost_fusion PROPERTY EXPORT_NAME fusion)
 
 target_include_directories(boost_fusion INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -6,6 +6,7 @@ project(BoostCRC)
 
 add_library(boost_crc INTERFACE)
 add_library(boost::crc ALIAS boost_crc)
+set_property(TARGET boost_crc PROPERTY EXPORT_NAME crc)
 
 target_include_directories(boost_crc INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

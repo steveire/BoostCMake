@@ -8,6 +8,7 @@ add_subdirectory(test)
 
 add_library(boost_accumulators INTERFACE)
 add_library(boost::accumulators ALIAS boost_accumulators)
+set_property(TARGET boost_accumulators PROPERTY EXPORT_NAME accumulators)
 
 target_include_directories(boost_accumulators INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

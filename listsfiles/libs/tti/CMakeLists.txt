@@ -6,6 +6,7 @@ project(BoostTTI NONE)
 
 add_library(boost_tti INTERFACE)
 add_library(boost::tti ALIAS boost_tti)
+set_property(TARGET boost_tti PROPERTY EXPORT_NAME tti)
 
 target_include_directories(boost_tti INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -6,6 +6,7 @@ project(BoostMPL NONE)
 
 add_library(boost_mpl INTERFACE)
 add_library(boost::mpl ALIAS boost_mpl)
+set_property(TARGET boost_mpl PROPERTY EXPORT_NAME mpl)
 
 target_include_directories(boost_mpl INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

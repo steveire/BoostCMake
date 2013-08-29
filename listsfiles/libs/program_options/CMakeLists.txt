@@ -35,6 +35,7 @@ target_link_libraries(boost_program_options PRIVATE
   )
 
 add_library(boost::program_options ALIAS boost_program_options)
+set_property(TARGET boost_program_options PROPERTY EXPORT_NAME program_options)
 
 install(DIRECTORY include/ DESTINATION include)
 

@@ -71,6 +71,7 @@ target_include_directories(boost_context INTERFACE
   )
 
 add_library(boost::context ALIAS boost_context)
+set_property(TARGET boost_context PROPERTY EXPORT_NAME context)
 
 install(DIRECTORY include/ DESTINATION include)
 

@@ -6,6 +6,7 @@ project(BoostOdeint NONE)
 
 add_library(boost_odeint INTERFACE)
 add_library(boost::odeint ALIAS boost_odeint)
+set_property(TARGET boost_odeint PROPERTY EXPORT_NAME odeint)
 
 target_include_directories(boost_odeint INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

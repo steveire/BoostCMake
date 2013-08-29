@@ -6,6 +6,7 @@ project(BoostTuple NONE)
 
 add_library(boost_tuple INTERFACE)
 add_library(boost::tuple ALIAS boost_tuple)
+set_property(TARGET boost_tuple PROPERTY EXPORT_NAME tuple)
 
 target_include_directories(boost_tuple INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

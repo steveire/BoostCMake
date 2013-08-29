@@ -65,6 +65,7 @@ if(NOT BUILD_SHARED_LIBS)
 endif()
 
 add_library(boost::python ALIAS boost_python)
+set_property(TARGET boost_python PROPERTY EXPORT_NAME python)
 
 install(DIRECTORY include/ DESTINATION include)
 

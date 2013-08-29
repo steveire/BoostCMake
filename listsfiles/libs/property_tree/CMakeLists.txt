@@ -6,6 +6,7 @@ project(BoostPropertyTree NONE)
 
 add_library(boost_property_tree INTERFACE)
 add_library(boost::property_tree ALIAS boost_property_tree)
+set_property(TARGET boost_property_tree PROPERTY EXPORT_NAME property_tree)
 
 target_include_directories(boost_property_tree INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

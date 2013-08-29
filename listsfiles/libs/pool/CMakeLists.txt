@@ -6,6 +6,7 @@ project(BoostPool NONE)
 
 add_library(boost_pool INTERFACE)
 add_library(boost::pool ALIAS boost_pool)
+set_property(TARGET boost_pool PROPERTY EXPORT_NAME pool)
 
 target_include_directories(boost_pool INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

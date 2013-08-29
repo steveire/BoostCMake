@@ -6,6 +6,7 @@ project(BoostLogic NONE)
 
 add_library(boost_logic INTERFACE)
 add_library(boost::logic ALIAS boost_logic)
+set_property(TARGET boost_logic PROPERTY EXPORT_NAME logic)
 
 target_include_directories(boost_logic INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -6,6 +6,7 @@ project(BoostHeap NONE)
 
 add_library(boost_heap INTERFACE)
 add_library(boost::heap ALIAS boost_heap)
+set_property(TARGET boost_heap PROPERTY EXPORT_NAME heap)
 
 target_include_directories(boost_heap INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

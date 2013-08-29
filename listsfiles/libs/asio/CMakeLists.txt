@@ -6,6 +6,7 @@ project(BoostAsio)
 
 add_library(boost_asio INTERFACE)
 add_library(boost::asio ALIAS boost_asio)
+set_property(TARGET boost_asio PROPERTY EXPORT_NAME asio)
 
 target_include_directories(boost_asio INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

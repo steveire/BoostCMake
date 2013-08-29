@@ -6,6 +6,7 @@ project(BoostException NONE)
 
 add_library(boost_exception INTERFACE)
 add_library(boost::exception ALIAS boost_exception)
+set_property(TARGET boost_exception PROPERTY EXPORT_NAME exception)
 
 target_include_directories(boost_exception INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

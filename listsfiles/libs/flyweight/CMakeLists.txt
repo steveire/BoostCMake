@@ -6,6 +6,7 @@ project(BoostFlyweight NONE)
 
 add_library(boost_flyweight INTERFACE)
 add_library(boost::flyweight ALIAS boost_flyweight)
+set_property(TARGET boost_flyweight PROPERTY EXPORT_NAME flyweight)
 
 target_include_directories(boost_flyweight INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -6,6 +6,7 @@ project(BoostIO NONE)
 
 add_library(boost_io INTERFACE)
 add_library(boost::io ALIAS boost_io)
+set_property(TARGET boost_io PROPERTY EXPORT_NAME io)
 
 target_include_directories(boost_io INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -6,6 +6,7 @@ project(BoostDynamicBitset)
 
 add_library(boost_dynamic_bitset INTERFACE)
 add_library(boost::dynamic_bitset ALIAS boost_dynamic_bitset)
+set_property(TARGET boost_dynamic_bitset PROPERTY EXPORT_NAME dynamic_bitset)
 
 target_include_directories(boost_dynamic_bitset INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

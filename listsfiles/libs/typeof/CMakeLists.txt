@@ -6,6 +6,7 @@ project(BoostTypeof NONE)
 
 add_library(boost_typeof INTERFACE)
 add_library(boost::typeof ALIAS boost_typeof)
+set_property(TARGET boost_typeof PROPERTY EXPORT_NAME typeof)
 
 target_include_directories(boost_typeof INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

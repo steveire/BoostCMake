@@ -6,6 +6,7 @@ project(BoostUBLAS NONE)
 
 add_library(boost_ublas INTERFACE)
 add_library(boost::ublas ALIAS boost_ublas)
+set_property(TARGET boost_ublas PROPERTY EXPORT_NAME ublas)
 
 target_include_directories(boost_ublas INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

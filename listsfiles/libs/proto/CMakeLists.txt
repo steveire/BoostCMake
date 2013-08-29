@@ -6,6 +6,7 @@ project(BoostProto NONE)
 
 add_library(boost_proto INTERFACE)
 add_library(boost::proto ALIAS boost_proto)
+set_property(TARGET boost_proto PROPERTY EXPORT_NAME proto)
 
 target_include_directories(boost_proto INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

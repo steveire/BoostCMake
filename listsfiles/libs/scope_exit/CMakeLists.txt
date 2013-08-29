@@ -6,6 +6,7 @@ project(BoostScopeExit NONE)
 
 add_library(boost_scope_exit INTERFACE)
 add_library(boost::scope_exit ALIAS boost_scope_exit)
+set_property(TARGET boost_scope_exit PROPERTY EXPORT_NAME scope_exit)
 
 target_include_directories(boost_scope_exit INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

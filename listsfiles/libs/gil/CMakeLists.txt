@@ -6,6 +6,7 @@ project(BoostGIL NONE)
 
 add_library(boost_gil INTERFACE)
 add_library(boost::gil ALIAS boost_gil)
+set_property(TARGET boost_gil PROPERTY EXPORT_NAME gil)
 
 target_include_directories(boost_gil INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

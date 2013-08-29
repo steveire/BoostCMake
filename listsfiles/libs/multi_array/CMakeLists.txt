@@ -6,6 +6,7 @@ project(BoostMultiArray NONE)
 
 add_library(boost_multi_array INTERFACE)
 add_library(boost::multi_array ALIAS boost_multi_array)
+set_property(TARGET boost_multi_array PROPERTY EXPORT_NAME multi_array)
 
 target_include_directories(boost_multi_array INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

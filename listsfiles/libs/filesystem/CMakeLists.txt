@@ -31,6 +31,7 @@ target_link_libraries(boost_filesystem PUBLIC
   )
 
 add_library(boost::filesystem ALIAS boost_filesystem)
+set_property(TARGET boost_filesystem PROPERTY EXPORT_NAME filesystem)
 
 install(DIRECTORY include/ DESTINATION include)
 

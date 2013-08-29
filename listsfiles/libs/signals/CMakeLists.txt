@@ -35,6 +35,7 @@ target_link_libraries(boost_signals PUBLIC
   )
 
 add_library(boost::signals ALIAS boost_signals)
+set_property(TARGET boost_signals PROPERTY EXPORT_NAME signals)
 
 install(DIRECTORY include/ DESTINATION include)
 

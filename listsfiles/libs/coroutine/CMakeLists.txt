@@ -40,6 +40,7 @@ target_link_libraries(boost_coroutine PUBLIC
   )
 
 add_library(boost::coroutine ALIAS boost_coroutine)
+set_property(TARGET boost_coroutine PROPERTY EXPORT_NAME coroutine)
 
 install(DIRECTORY include/ DESTINATION include)
 

@@ -192,6 +192,7 @@ target_link_libraries(boost_locale PUBLIC
   )
 
 add_library(boost::locale ALIAS boost_locale)
+set_property(TARGET boost_locale PROPERTY EXPORT_NAME locale)
 
 install(DIRECTORY include/ DESTINATION include)
 

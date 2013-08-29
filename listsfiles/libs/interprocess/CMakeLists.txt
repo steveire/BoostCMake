@@ -6,6 +6,7 @@ project(BoostInterprocess NONE)
 
 add_library(boost_interprocess INTERFACE)
 add_library(boost::interprocess ALIAS boost_interprocess)
+set_property(TARGET boost_interprocess PROPERTY EXPORT_NAME interprocess)
 
 target_include_directories(boost_interprocess INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

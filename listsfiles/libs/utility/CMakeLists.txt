@@ -6,6 +6,7 @@ project(BoostUtility NONE)
 
 add_library(boost_utility INTERFACE)
 add_library(boost::utility ALIAS boost_utility)
+set_property(TARGET boost_utility PROPERTY EXPORT_NAME utility)
 
 target_include_directories(boost_utility INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

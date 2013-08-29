@@ -57,6 +57,7 @@ target_link_libraries(boost_iostreams PUBLIC
   )
 
 add_library(boost::iostreams ALIAS boost_iostreams)
+set_property(TARGET boost_iostreams PROPERTY EXPORT_NAME iostreams)
 
 install(DIRECTORY include/ DESTINATION include)
 

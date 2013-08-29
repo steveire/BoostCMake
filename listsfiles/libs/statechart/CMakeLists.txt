@@ -6,6 +6,7 @@ project(BoostStatechart NONE)
 
 add_library(boost_statechart INTERFACE)
 add_library(boost::statechart ALIAS boost_statechart)
+set_property(TARGET boost_statechart PROPERTY EXPORT_NAME statechart)
 
 target_include_directories(boost_statechart INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

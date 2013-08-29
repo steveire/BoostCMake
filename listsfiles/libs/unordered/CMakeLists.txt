@@ -6,6 +6,7 @@ project(BoostUnordered NONE)
 
 add_library(boost_unordered INTERFACE)
 add_library(boost::unordered ALIAS boost_unordered)
+set_property(TARGET boost_unordered PROPERTY EXPORT_NAME unordered)
 
 target_include_directories(boost_unordered INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

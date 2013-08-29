@@ -6,6 +6,7 @@ project(BoostUnits NONE)
 
 add_library(boost_units INTERFACE)
 add_library(boost::units ALIAS boost_units)
+set_property(TARGET boost_units PROPERTY EXPORT_NAME units)
 
 target_include_directories(boost_units INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

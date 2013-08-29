@@ -29,6 +29,7 @@ target_link_libraries(boost_chrono PUBLIC
   )
 
 add_library(boost::chrono ALIAS boost_chrono)
+set_property(TARGET boost_chrono PROPERTY EXPORT_NAME chrono)
 
 install(DIRECTORY include/ DESTINATION include)
 

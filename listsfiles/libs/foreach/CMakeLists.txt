@@ -6,6 +6,7 @@ project(BoostForeach NONE)
 
 add_library(boost_foreach INTERFACE)
 add_library(boost::foreach ALIAS boost_foreach)
+set_property(TARGET boost_foreach PROPERTY EXPORT_NAME foreach)
 
 target_include_directories(boost_foreach INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

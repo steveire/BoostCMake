@@ -55,6 +55,7 @@ target_link_libraries(boost_mpi PUBLIC
   )
 
 add_library(boost::mpi ALIAS boost_mpi)
+set_property(TARGET boost_mpi PROPERTY EXPORT_NAME mpi)
 
 add_library(boost_mpi_python
   src/python/serialize.cpp
@@ -70,6 +71,7 @@ target_link_libraries(boost_mpi_python
   )
 
 add_library(boost::mpi::python ALIAS boost_mpi_python)
+set_property(TARGET boost_mpi_python PROPERTY EXPORT_NAME mpi_python)
 
 if(BUILD_SHARED_LIBS)
   add_library(boost_mpi-py MODULE

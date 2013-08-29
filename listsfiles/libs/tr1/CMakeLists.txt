@@ -6,6 +6,7 @@ project(BoostTR1 NONE)
 
 add_library(boost_tr1 INTERFACE)
 add_library(boost::tr1 ALIAS boost_tr1)
+set_property(TARGET boost_tr1 PROPERTY EXPORT_NAME tr1)
 
 target_include_directories(boost_tr1 INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

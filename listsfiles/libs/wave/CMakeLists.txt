@@ -39,6 +39,7 @@ target_link_libraries(boost_wave
   )
 
 add_library(boost::wave ALIAS boost_wave)
+set_property(TARGET boost_wave PROPERTY EXPORT_NAME wave)
 
 add_executable(wave
   tool/cpp.cpp

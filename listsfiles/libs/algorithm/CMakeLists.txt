@@ -6,6 +6,7 @@ project(BoostAlgorithm)
 
 add_library(boost_algorithm INTERFACE)
 add_library(boost::algorithm ALIAS boost_algorithm)
+set_property(TARGET boost_algorithm PROPERTY EXPORT_NAME algorithm)
 
 target_include_directories(boost_algorithm INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

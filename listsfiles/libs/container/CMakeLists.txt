@@ -6,6 +6,7 @@ project(BoostContainer)
 
 add_library(boost_container INTERFACE)
 add_library(boost::container ALIAS boost_container)
+set_property(TARGET boost_container PROPERTY EXPORT_NAME container)
 
 target_include_directories(boost_container INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -81,7 +81,9 @@ target_link_libraries(boost_wserialization PUBLIC
   )
 
 add_library(boost::serialization ALIAS boost_serialization)
+set_property(TARGET boost_serialization PROPERTY EXPORT_NAME serialization)
 add_library(boost::wserialization ALIAS boost_wserialization)
+set_property(TARGET boost_wserialization PROPERTY EXPORT_NAME wserialization)
 
 install(DIRECTORY include/ DESTINATION include)
 

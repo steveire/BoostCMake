@@ -8,6 +8,7 @@ add_subdirectory(test)
 
 add_library(boost_array INTERFACE)
 add_library(boost::array ALIAS boost_array)
+set_property(TARGET boost_array PROPERTY EXPORT_NAME array)
 
 target_include_directories(boost_array INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

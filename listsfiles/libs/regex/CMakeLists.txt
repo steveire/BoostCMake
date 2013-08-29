@@ -50,6 +50,7 @@ target_link_libraries(boost_regex PUBLIC
   )
 
 add_library(boost::regex ALIAS boost_regex)
+set_property(TARGET boost_regex PROPERTY EXPORT_NAME regex)
 
 install(DIRECTORY include/ DESTINATION include)
 

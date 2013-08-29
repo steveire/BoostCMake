@@ -6,6 +6,7 @@ project(BoostTypeTraits NONE)
 
 add_library(boost_type_traits INTERFACE)
 add_library(boost::type_traits ALIAS boost_type_traits)
+set_property(TARGET boost_type_traits PROPERTY EXPORT_NAME type_traits)
 
 target_include_directories(boost_type_traits INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -6,6 +6,7 @@ project(BoostIterator NONE)
 
 add_library(boost_iterator INTERFACE)
 add_library(boost::iterator ALIAS boost_iterator)
+set_property(TARGET boost_iterator PROPERTY EXPORT_NAME iterator)
 
 target_include_directories(boost_iterator INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

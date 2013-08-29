@@ -6,6 +6,7 @@ project(BoostLocalFunction CXX)
 
 add_library(boost_local_function INTERFACE)
 add_library(boost::local_function ALIAS boost_local_function)
+set_property(TARGET boost_local_function PROPERTY EXPORT_NAME local_function)
 
 target_include_directories(boost_local_function INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

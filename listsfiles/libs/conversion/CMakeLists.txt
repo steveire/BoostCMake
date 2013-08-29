@@ -6,6 +6,7 @@ project(BoostConversion)
 
 add_library(boost_conversion INTERFACE)
 add_library(boost::conversion ALIAS boost_conversion)
+set_property(TARGET boost_conversion PROPERTY EXPORT_NAME conversion)
 
 target_include_directories(boost_conversion INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -6,6 +6,7 @@ project(BoostConfig)
 
 add_library(boost_config INTERFACE)
 add_library(boost::config ALIAS boost_config)
+set_property(TARGET boost_config PROPERTY EXPORT_NAME config)
 
 target_include_directories(boost_config INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
