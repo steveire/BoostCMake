@@ -56,10 +56,10 @@ set(TR1_SOURCES
 
 include_directories(src/tr1)
 
-add_library(boost_math::special_functions INTERFACE)
-add_library(boost::math::special_functions ALIAS boost_math::special_functions)
-set_property(TARGET boost_math::special_functions PROPERTY EXPORT_NAME math::special_functions)
-target_include_directories(boost_math::special_functions INTERFACE
+add_library(boost_math_special_functions INTERFACE)
+add_library(boost::math::special_functions ALIAS boost_math_special_functions)
+set_property(TARGET boost_math_special_functions PROPERTY EXPORT_NAME math::special_functions)
+target_include_directories(boost_math_special_functions INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
@@ -105,7 +105,7 @@ add_math_library(c99l "l" ${C99_SOURCES})
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS
-    boost::math::special_functions
+    boost_math_special_functions
     boost_math_tr1
     boost_math_tr1f
     boost_math_tr1l
