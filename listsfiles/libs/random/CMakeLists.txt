@@ -29,7 +29,7 @@ add_library(boost::random::device ALIAS boost_random)
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::random boost_random EXPORT ${PROJECT_NAME}Targets
+install(TARGETS boost_random boost_random EXPORT ${PROJECT_NAME}Targets
   RUNTIME DESTINATION bin
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib

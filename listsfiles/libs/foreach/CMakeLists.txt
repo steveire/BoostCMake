@@ -14,7 +14,7 @@ target_include_directories(boost_foreach INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::foreach EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_foreach EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

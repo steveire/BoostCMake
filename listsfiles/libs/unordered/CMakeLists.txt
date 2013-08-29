@@ -18,7 +18,7 @@ target_link_libraries(boost_unordered INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::unordered EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_unordered EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

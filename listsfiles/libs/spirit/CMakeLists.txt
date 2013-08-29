@@ -18,7 +18,7 @@ target_link_libraries(boost_spirit INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::spirit EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_spirit EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

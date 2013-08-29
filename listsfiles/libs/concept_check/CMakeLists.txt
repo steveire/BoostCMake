@@ -14,7 +14,7 @@ target_include_directories(boost_concept_check INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::concept_check EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_concept_check EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

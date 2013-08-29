@@ -14,7 +14,7 @@ target_include_directories(boost_preprocessor INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::preprocessor EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_preprocessor EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

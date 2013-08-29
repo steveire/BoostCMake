@@ -14,7 +14,7 @@ target_include_directories(boost_iterator INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::iterator EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_iterator EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

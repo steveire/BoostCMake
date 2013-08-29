@@ -18,7 +18,7 @@ target_link_libraries(boost_algorithm INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::algorithm EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_algorithm EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

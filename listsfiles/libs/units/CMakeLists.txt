@@ -14,7 +14,7 @@ target_include_directories(boost_units INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::units EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_units EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

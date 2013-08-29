@@ -14,7 +14,7 @@ target_include_directories(boost_local_function INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::local_function EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_local_function EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

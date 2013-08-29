@@ -14,7 +14,7 @@ target_include_directories(boost_logic INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::logic EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_logic EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

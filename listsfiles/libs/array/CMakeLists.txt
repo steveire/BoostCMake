@@ -22,7 +22,7 @@ target_link_libraries(boost_array INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::array EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_array EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

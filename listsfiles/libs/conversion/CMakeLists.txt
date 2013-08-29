@@ -22,7 +22,7 @@ target_link_libraries(boost_conversion INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::conversion EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_conversion EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

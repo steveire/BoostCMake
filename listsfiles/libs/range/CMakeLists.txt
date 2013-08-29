@@ -19,7 +19,7 @@ target_link_libraries(boost_range INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::range EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_range EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

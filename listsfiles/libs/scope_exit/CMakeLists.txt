@@ -14,7 +14,7 @@ target_include_directories(boost_scope_exit INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::scope_exit EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_scope_exit EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

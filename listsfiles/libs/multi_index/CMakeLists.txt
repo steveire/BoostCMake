@@ -14,7 +14,7 @@ target_include_directories(boost_multi_index INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::multi_index EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_multi_index EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

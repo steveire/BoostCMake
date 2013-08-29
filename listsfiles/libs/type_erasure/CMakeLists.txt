@@ -14,7 +14,7 @@ target_include_directories(boost_type_erasure INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::type_erasure EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_type_erasure EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

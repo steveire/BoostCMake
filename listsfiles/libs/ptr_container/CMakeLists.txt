@@ -14,7 +14,7 @@ target_include_directories(boost_ptr_container INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::ptr_container EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_ptr_container EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

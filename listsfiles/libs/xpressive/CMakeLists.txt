@@ -18,7 +18,7 @@ target_link_libraries(boost_xpressive INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::xpressive EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_xpressive EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

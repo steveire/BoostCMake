@@ -21,7 +21,7 @@ target_link_libraries(boost_exception INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::exception EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_exception EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

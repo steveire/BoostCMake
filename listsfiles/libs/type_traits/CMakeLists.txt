@@ -19,7 +19,7 @@ target_link_libraries(boost_type_traits INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::type_traits EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_type_traits EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

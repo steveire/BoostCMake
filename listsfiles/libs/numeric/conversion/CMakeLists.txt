@@ -14,7 +14,7 @@ target_include_directories(boost_numeric::conversion INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::numeric::conversion EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_numeric::conversion EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

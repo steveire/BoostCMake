@@ -14,7 +14,7 @@ target_include_directories(boost_dynamic_bitset INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::dynamic_bitset EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_dynamic_bitset EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

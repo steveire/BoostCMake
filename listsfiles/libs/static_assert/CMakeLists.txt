@@ -14,7 +14,7 @@ target_include_directories(boost_static_assert INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::static_assert EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_static_assert EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

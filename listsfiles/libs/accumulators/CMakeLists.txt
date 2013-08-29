@@ -24,7 +24,7 @@ target_link_libraries(boost_accumulators INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::accumulators EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_accumulators EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

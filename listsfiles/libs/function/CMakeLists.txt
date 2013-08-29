@@ -19,7 +19,7 @@ target_link_libraries(boost_function INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::function EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_function EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
