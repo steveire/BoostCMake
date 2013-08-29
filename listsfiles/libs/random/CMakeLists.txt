@@ -17,21 +17,21 @@ target_link_libraries(boost_random INTERFACE
   boost::config
   )
 
-add_library(boost_random
+add_library(boost_random_device
   src/random_device.cpp
   )
 
-target_link_libraries(boost_random PUBLIC
+target_link_libraries(boost_random_device PUBLIC
   boost::random
   boost::exception
   )
 
-add_library(boost::random::device ALIAS boost_random)
-set_property(TARGET boost_random PROPERTY EXPORT_NAME random)
+add_library(boost::random::device ALIAS boost_random_device)
+set_property(TARGET boost_random_device PROPERTY EXPORT_NAME random::device)
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_random boost_random EXPORT ${PROJECT_NAME}Targets
+install(TARGETS boost_random boost_random_device EXPORT ${PROJECT_NAME}Targets
   RUNTIME DESTINATION bin
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
