@@ -71,6 +71,6 @@ install(FILES
   DESTINATION lib/cmake/${PROJECT_NAME}
 )
 
-export(TARGETS 
+export(TARGETS boost_coroutine
   NAMESPACE boost::
   FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
