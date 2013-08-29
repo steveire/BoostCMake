@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostTypeof NONE)
 
-add_library(boost::typeof INTERFACE)
+add_library(boost_typeof INTERFACE)
+add_library(boost::typeof ALIAS boost_typeof)
 
 target_include_directories(boost::typeof INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

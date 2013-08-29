@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostSmartPtr NONE)
 
-add_library(boost::smart_ptr INTERFACE)
+add_library(boost_smart_ptr INTERFACE)
+add_library(boost::smart_ptr ALIAS boost_smart_ptr)
 
 target_include_directories(boost::smart_ptr INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

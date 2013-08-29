@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostNumericInterval NONE)
 
-add_library(boost::numeric::interval INTERFACE)
+add_library(boost_numeric::interval INTERFACE)
+add_library(boost::numeric::interval ALIAS boost_numeric::interval)
 
 target_include_directories(boost::numeric::interval INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

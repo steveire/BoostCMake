@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostPropertyTree NONE)
 
-add_library(boost::property_tree INTERFACE)
+add_library(boost_property_tree INTERFACE)
+add_library(boost::property_tree ALIAS boost_property_tree)
 
 target_include_directories(boost::property_tree INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

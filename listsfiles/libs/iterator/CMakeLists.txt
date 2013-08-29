@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostIterator NONE)
 
-add_library(boost::iterator INTERFACE)
+add_library(boost_iterator INTERFACE)
+add_library(boost::iterator ALIAS boost_iterator)
 
 target_include_directories(boost::iterator INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

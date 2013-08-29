@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostXpressive NONE)
 
-add_library(boost::xpressive INTERFACE)
+add_library(boost_xpressive INTERFACE)
+add_library(boost::xpressive ALIAS boost_xpressive)
 
 target_include_directories(boost::xpressive INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

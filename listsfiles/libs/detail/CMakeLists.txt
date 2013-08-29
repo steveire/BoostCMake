@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostDetail)
 
-add_library(boost::detail INTERFACE)
+add_library(boost_detail INTERFACE)
+add_library(boost::detail ALIAS boost_detail)
 
 target_include_directories(boost::detail INTERFACE
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"

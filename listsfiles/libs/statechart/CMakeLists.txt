@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostStatechart NONE)
 
-add_library(boost::statechart INTERFACE)
+add_library(boost_statechart INTERFACE)
+add_library(boost::statechart ALIAS boost_statechart)
 
 target_include_directories(boost::statechart INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

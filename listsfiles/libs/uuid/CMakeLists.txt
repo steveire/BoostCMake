@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostUUID NONE)
 
-add_library(boost::uuid INTERFACE)
+add_library(boost_uuid INTERFACE)
+add_library(boost::uuid ALIAS boost_uuid)
 
 target_include_directories(boost::uuid INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

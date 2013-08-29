@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostUBLAS NONE)
 
-add_library(boost::ublas INTERFACE)
+add_library(boost_ublas INTERFACE)
+add_library(boost::ublas ALIAS boost_ublas)
 
 target_include_directories(boost::ublas INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

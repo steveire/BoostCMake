@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostRange NONE)
 
-add_library(boost::range INTERFACE)
+add_library(boost_range INTERFACE)
+add_library(boost::range ALIAS boost_range)
 
 target_include_directories(boost::range INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

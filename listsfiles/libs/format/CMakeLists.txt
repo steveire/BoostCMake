@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostFormat NONE)
 
-add_library(boost::format INTERFACE)
+add_library(boost_format INTERFACE)
+add_library(boost::format ALIAS boost_format)
 
 target_include_directories(boost::format INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostContainer)
 
-add_library(boost::container INTERFACE)
+add_library(boost_container INTERFACE)
+add_library(boost::container ALIAS boost_container)
 
 target_include_directories(boost::container INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

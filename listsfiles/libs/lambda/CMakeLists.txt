@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostLambda NONE)
 
-add_library(boost::lambda INTERFACE)
+add_library(boost_lambda INTERFACE)
+add_library(boost::lambda ALIAS boost_lambda)
 
 target_include_directories(boost::lambda INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

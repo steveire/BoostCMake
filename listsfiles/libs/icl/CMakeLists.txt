@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostICL NONE)
 
-add_library(boost::icl INTERFACE)
+add_library(boost_icl INTERFACE)
+add_library(boost::icl ALIAS boost_icl)
 
 target_include_directories(boost::icl INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

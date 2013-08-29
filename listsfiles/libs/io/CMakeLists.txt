@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostIO NONE)
 
-add_library(boost::io INTERFACE)
+add_library(boost_io INTERFACE)
+add_library(boost::io ALIAS boost_io)
 
 target_include_directories(boost::io INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

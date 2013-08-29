@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostCircularBuffer)
 
-add_library(boost::circular_buffer INTERFACE)
+add_library(boost_circular_buffer INTERFACE)
+add_library(boost::circular_buffer ALIAS boost_circular_buffer)
 
 target_include_directories(boost::circular_buffer INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

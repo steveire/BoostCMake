@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostOdeint NONE)
 
-add_library(boost::odeint INTERFACE)
+add_library(boost_odeint INTERFACE)
+add_library(boost::odeint ALIAS boost_odeint)
 
 target_include_directories(boost::odeint INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

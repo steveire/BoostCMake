@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostBind)
 
-add_library(boost::bind INTERFACE)
+add_library(boost_bind INTERFACE)
+add_library(boost::bind ALIAS boost_bind)
 
 target_include_directories(boost::bind INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

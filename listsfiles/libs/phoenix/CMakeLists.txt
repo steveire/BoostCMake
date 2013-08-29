@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostPhoenix NONE)
 
-add_library(boost::phoenix INTERFACE)
+add_library(boost_phoenix INTERFACE)
+add_library(boost::phoenix ALIAS boost_phoenix)
 
 target_include_directories(boost::phoenix INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

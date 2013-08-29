@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostLogic NONE)
 
-add_library(boost::logic INTERFACE)
+add_library(boost_logic INTERFACE)
+add_library(boost::logic ALIAS boost_logic)
 
 target_include_directories(boost::logic INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

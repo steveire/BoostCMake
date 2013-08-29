@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostFlyweight NONE)
 
-add_library(boost::flyweight INTERFACE)
+add_library(boost_flyweight INTERFACE)
+add_library(boost::flyweight ALIAS boost_flyweight)
 
 target_include_directories(boost::flyweight INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

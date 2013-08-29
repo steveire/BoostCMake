@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostFunction NONE)
 
-add_library(boost::function INTERFACE)
+add_library(boost_function INTERFACE)
+add_library(boost::function ALIAS boost_function)
 
 target_include_directories(boost::function INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

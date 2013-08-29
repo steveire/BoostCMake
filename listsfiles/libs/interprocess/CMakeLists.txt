@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostInterprocess NONE)
 
-add_library(boost::interprocess INTERFACE)
+add_library(boost_interprocess INTERFACE)
+add_library(boost::interprocess ALIAS boost_interprocess)
 
 target_include_directories(boost::interprocess INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

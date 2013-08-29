@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostHeap NONE)
 
-add_library(boost::heap INTERFACE)
+add_library(boost_heap INTERFACE)
+add_library(boost::heap ALIAS boost_heap)
 
 target_include_directories(boost::heap INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

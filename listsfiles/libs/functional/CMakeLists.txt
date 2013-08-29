@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostFunctional NONE)
 
-add_library(boost::functional INTERFACE)
+add_library(boost_functional INTERFACE)
+add_library(boost::functional ALIAS boost_functional)
 
 target_include_directories(boost::functional INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

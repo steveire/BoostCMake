@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostIntrusive NONE)
 
-add_library(boost::intrusive INTERFACE)
+add_library(boost_intrusive INTERFACE)
+add_library(boost::intrusive ALIAS boost_intrusive)
 
 target_include_directories(boost::intrusive INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

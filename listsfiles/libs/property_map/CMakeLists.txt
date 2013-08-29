@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostPropertyMap NONE)
 
-add_library(boost::property_map INTERFACE)
+add_library(boost_property_map INTERFACE)
+add_library(boost::property_map ALIAS boost_property_map)
 
 target_include_directories(boost::property_map INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

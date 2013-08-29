@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostMultiArray NONE)
 
-add_library(boost::multi_array INTERFACE)
+add_library(boost_multi_array INTERFACE)
+add_library(boost::multi_array ALIAS boost_multi_array)
 
 target_include_directories(boost::multi_array INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostPool NONE)
 
-add_library(boost::pool INTERFACE)
+add_library(boost_pool INTERFACE)
+add_library(boost::pool ALIAS boost_pool)
 
 target_include_directories(boost::pool INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

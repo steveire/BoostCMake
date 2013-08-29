@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostTypeErasure NONE)
 
-add_library(boost::type_erasure INTERFACE)
+add_library(boost_type_erasure INTERFACE)
+add_library(boost::type_erasure ALIAS boost_type_erasure)
 
 target_include_directories(boost::type_erasure INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

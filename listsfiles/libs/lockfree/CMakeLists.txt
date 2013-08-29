@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostLockfree NONE)
 
-add_library(boost::lockfree INTERFACE)
+add_library(boost_lockfree INTERFACE)
+add_library(boost::lockfree ALIAS boost_lockfree)
 
 target_include_directories(boost::lockfree INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

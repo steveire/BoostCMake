@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostCRC)
 
-add_library(boost::crc INTERFACE)
+add_library(boost_crc INTERFACE)
+add_library(boost::crc ALIAS boost_crc)
 
 target_include_directories(boost::crc INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostConceptCheck)
 
-add_library(boost::concept_check INTERFACE)
+add_library(boost_concept_check INTERFACE)
+add_library(boost::concept_check ALIAS boost_concept_check)
 
 target_include_directories(boost::concept_check INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

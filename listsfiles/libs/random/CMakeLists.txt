@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostRandom CXX)
 
-add_library(boost::random INTERFACE)
+add_library(boost_random INTERFACE)
+add_library(boost::random ALIAS boost_random)
 
 target_include_directories(boost::random INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostPtrContainer NONE)
 
-add_library(boost::ptr_container INTERFACE)
+add_library(boost_ptr_container INTERFACE)
+add_library(boost::ptr_container ALIAS boost_ptr_container)
 
 target_include_directories(boost::ptr_container INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

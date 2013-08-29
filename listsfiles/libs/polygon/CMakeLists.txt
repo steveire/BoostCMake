@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostPolygon NONE)
 
-add_library(boost::polygon INTERFACE)
+add_library(boost_polygon INTERFACE)
+add_library(boost::polygon ALIAS boost_polygon)
 
 target_include_directories(boost::polygon INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostParameter NONE)
 
-add_library(boost::parameter INTERFACE)
+add_library(boost_parameter INTERFACE)
+add_library(boost::parameter ALIAS boost_parameter)
 
 target_include_directories(boost::parameter INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

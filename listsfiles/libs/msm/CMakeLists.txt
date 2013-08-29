@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostMSM NONE)
 
-add_library(boost::msm INTERFACE)
+add_library(boost_msm INTERFACE)
+add_library(boost::msm ALIAS boost_msm)
 
 target_include_directories(boost::msm INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

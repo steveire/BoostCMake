@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostFusion NONE)
 
-add_library(boost::fusion INTERFACE)
+add_library(boost_fusion INTERFACE)
+add_library(boost::fusion ALIAS boost_fusion)
 
 target_include_directories(boost::fusion INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

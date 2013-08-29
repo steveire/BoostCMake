@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostException NONE)
 
-add_library(boost::exception INTERFACE)
+add_library(boost_exception INTERFACE)
+add_library(boost::exception ALIAS boost_exception)
 
 target_include_directories(boost::exception INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostUnordered NONE)
 
-add_library(boost::unordered INTERFACE)
+add_library(boost_unordered INTERFACE)
+add_library(boost::unordered ALIAS boost_unordered)
 
 target_include_directories(boost::unordered INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

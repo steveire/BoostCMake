@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostAssign)
 
-add_library(boost::assign INTERFACE)
+add_library(boost_assign INTERFACE)
+add_library(boost::assign ALIAS boost_assign)
 
 target_include_directories(boost::assign INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

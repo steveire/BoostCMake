@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostDynamicBitset)
 
-add_library(boost::dynamic_bitset INTERFACE)
+add_library(boost_dynamic_bitset INTERFACE)
+add_library(boost::dynamic_bitset ALIAS boost_dynamic_bitset)
 
 target_include_directories(boost::dynamic_bitset INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

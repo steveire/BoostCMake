@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostGIL NONE)
 
-add_library(boost::gil INTERFACE)
+add_library(boost_gil INTERFACE)
+add_library(boost::gil ALIAS boost_gil)
 
 target_include_directories(boost::gil INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

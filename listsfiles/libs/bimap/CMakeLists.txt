@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostBimap)
 
-add_library(boost::bimap INTERFACE)
+add_library(boost_bimap INTERFACE)
+add_library(boost::bimap ALIAS boost_bimap)
 
 target_include_directories(boost::bimap INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

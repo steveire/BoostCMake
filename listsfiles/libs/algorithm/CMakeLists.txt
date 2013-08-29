@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostAlgorithm)
 
-add_library(boost::algorithm INTERFACE)
+add_library(boost_algorithm INTERFACE)
+add_library(boost::algorithm ALIAS boost_algorithm)
 
 target_include_directories(boost::algorithm INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

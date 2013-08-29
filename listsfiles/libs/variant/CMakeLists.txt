@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostVariant NONE)
 
-add_library(boost::variant INTERFACE)
+add_library(boost_variant INTERFACE)
+add_library(boost::variant ALIAS boost_variant)
 
 target_include_directories(boost::variant INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

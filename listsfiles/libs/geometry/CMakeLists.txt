@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostGeometry NONE)
 
-add_library(boost::geometry INTERFACE)
+add_library(boost_geometry INTERFACE)
+add_library(boost::geometry ALIAS boost_geometry)
 
 target_include_directories(boost::geometry INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

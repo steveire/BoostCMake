@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostTokenizer NONE)
 
-add_library(boost::tokenizer INTERFACE)
+add_library(boost_tokenizer INTERFACE)
+add_library(boost::tokenizer ALIAS boost_tokenizer)
 
 target_include_directories(boost::tokenizer INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

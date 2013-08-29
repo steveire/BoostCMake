@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostRatio NONE)
 
-add_library(boost::ratio INTERFACE)
+add_library(boost_ratio INTERFACE)
+add_library(boost::ratio ALIAS boost_ratio)
 
 target_include_directories(boost::ratio INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

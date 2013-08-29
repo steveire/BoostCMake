@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostTTI NONE)
 
-add_library(boost::tti INTERFACE)
+add_library(boost_tti INTERFACE)
+add_library(boost::tti ALIAS boost_tti)
 
 target_include_directories(boost::tti INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

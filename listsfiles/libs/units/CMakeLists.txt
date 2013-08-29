@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostUnits NONE)
 
-add_library(boost::units INTERFACE)
+add_library(boost_units INTERFACE)
+add_library(boost::units ALIAS boost_units)
 
 target_include_directories(boost::units INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

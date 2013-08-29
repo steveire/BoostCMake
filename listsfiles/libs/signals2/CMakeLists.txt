@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostSignals2 NONE)
 
-add_library(boost::signals2 INTERFACE)
+add_library(boost_signals2 INTERFACE)
+add_library(boost::signals2 ALIAS boost_signals2)
 
 target_include_directories(boost::signals2 INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

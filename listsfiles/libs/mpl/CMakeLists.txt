@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostMPL NONE)
 
-add_library(boost::mpl INTERFACE)
+add_library(boost_mpl INTERFACE)
+add_library(boost::mpl ALIAS boost_mpl)
 
 target_include_directories(boost::mpl INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostConfig)
 
-add_library(boost::config INTERFACE)
+add_library(boost_config INTERFACE)
+add_library(boost::config ALIAS boost_config)
 
 target_include_directories(boost::config INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

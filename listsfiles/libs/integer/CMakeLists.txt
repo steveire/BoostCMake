@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostInteger NONE)
 
-add_library(boost::integer INTERFACE)
+add_library(boost_integer INTERFACE)
+add_library(boost::integer ALIAS boost_integer)
 
 target_include_directories(boost::integer INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

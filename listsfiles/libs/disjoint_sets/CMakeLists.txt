@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostDisjointSets)
 
-add_library(boost::disjoint_sets INTERFACE)
+add_library(boost_disjoint_sets INTERFACE)
+add_library(boost::disjoint_sets ALIAS boost_disjoint_sets)
 
 target_include_directories(boost::disjoint_sets INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

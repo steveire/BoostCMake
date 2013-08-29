@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostSpirit NONE)
 
-add_library(boost::spirit INTERFACE)
+add_library(boost_spirit INTERFACE)
+add_library(boost::spirit ALIAS boost_spirit)
 
 target_include_directories(boost::spirit INTERFACE
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"

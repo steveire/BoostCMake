@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostRational NONE)
 
-add_library(boost::rational INTERFACE)
+add_library(boost_rational INTERFACE)
+add_library(boost::rational ALIAS boost_rational)
 
 target_include_directories(boost::rational INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

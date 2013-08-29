@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostTypeTraits NONE)
 
-add_library(boost::type_traits INTERFACE)
+add_library(boost_type_traits INTERFACE)
+add_library(boost::type_traits ALIAS boost_type_traits)
 
 target_include_directories(boost::type_traits INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostAsio)
 
-add_library(boost::asio INTERFACE)
+add_library(boost_asio INTERFACE)
+add_library(boost::asio ALIAS boost_asio)
 
 target_include_directories(boost::asio INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

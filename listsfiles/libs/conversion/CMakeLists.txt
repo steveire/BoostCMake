@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostConversion)
 
-add_library(boost::conversion INTERFACE)
+add_library(boost_conversion INTERFACE)
+add_library(boost::conversion ALIAS boost_conversion)
 
 target_include_directories(boost::conversion INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

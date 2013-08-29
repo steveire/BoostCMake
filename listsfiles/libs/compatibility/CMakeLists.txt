@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostCompatibility)
 
-add_library(boost::compatibility INTERFACE)
+add_library(boost_compatibility INTERFACE)
+add_library(boost::compatibility ALIAS boost_compatibility)
 
 target_include_directories(boost::compatibility INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

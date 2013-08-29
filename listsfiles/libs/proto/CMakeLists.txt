@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostProto NONE)
 
-add_library(boost::proto INTERFACE)
+add_library(boost_proto INTERFACE)
+add_library(boost::proto ALIAS boost_proto)
 
 target_include_directories(boost::proto INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

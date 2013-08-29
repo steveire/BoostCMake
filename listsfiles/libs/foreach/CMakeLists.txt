@@ -4,7 +4,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostForeach NONE)
 
-add_library(boost::foreach INTERFACE)
+add_library(boost_foreach INTERFACE)
+add_library(boost::foreach ALIAS boost_foreach)
 
 target_include_directories(boost::foreach INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

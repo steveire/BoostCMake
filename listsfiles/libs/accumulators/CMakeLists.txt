@@ -6,7 +6,8 @@ project(BoostAccumulators)
 
 add_subdirectory(test)
 
-add_library(boost::accumulators INTERFACE)
+add_library(boost_accumulators INTERFACE)
+add_library(boost::accumulators ALIAS boost_accumulators)
 
 target_include_directories(boost::accumulators INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
