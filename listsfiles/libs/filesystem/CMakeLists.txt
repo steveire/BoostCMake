@@ -17,7 +17,6 @@ add_library(boost_filesystem
 
 target_include_directories(boost_filesystem PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_filesystem PUBLIC

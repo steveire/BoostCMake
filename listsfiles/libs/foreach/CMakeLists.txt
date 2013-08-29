@@ -10,12 +10,13 @@ set_property(TARGET boost_foreach PROPERTY EXPORT_NAME foreach)
 
 target_include_directories(boost_foreach INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_foreach EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_foreach EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

@@ -10,7 +10,6 @@ set_property(TARGET boost_integer PROPERTY EXPORT_NAME integer)
 
 target_include_directories(boost_integer INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_integer INTERFACE
@@ -19,7 +18,9 @@ target_link_libraries(boost_integer INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_integer EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_integer EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

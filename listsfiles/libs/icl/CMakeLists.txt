@@ -10,12 +10,13 @@ set_property(TARGET boost_icl PROPERTY EXPORT_NAME icl)
 
 target_include_directories(boost_icl INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_icl EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_icl EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

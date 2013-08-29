@@ -10,7 +10,6 @@ set_property(TARGET boost_exception PROPERTY EXPORT_NAME exception)
 
 target_include_directories(boost_exception INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_exception INTERFACE
@@ -22,7 +21,9 @@ target_link_libraries(boost_exception INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_exception EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_exception EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

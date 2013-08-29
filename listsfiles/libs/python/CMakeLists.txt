@@ -39,7 +39,6 @@ add_library(boost_python
 
 target_include_directories(boost_python PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   ${PYTHON_INCLUDE_DIRS}
   )
 

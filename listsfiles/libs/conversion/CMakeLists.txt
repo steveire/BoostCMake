@@ -10,7 +10,6 @@ set_property(TARGET boost_conversion PROPERTY EXPORT_NAME conversion)
 
 target_include_directories(boost_conversion INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_conversion INTERFACE
@@ -23,7 +22,9 @@ target_link_libraries(boost_conversion INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_conversion EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_conversion EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

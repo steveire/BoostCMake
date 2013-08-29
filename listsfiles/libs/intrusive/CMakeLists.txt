@@ -10,12 +10,13 @@ set_property(TARGET boost_intrusive PROPERTY EXPORT_NAME intrusive)
 
 target_include_directories(boost_intrusive INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_intrusive EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_intrusive EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

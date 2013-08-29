@@ -10,7 +10,6 @@ set_property(TARGET boost_xpressive PROPERTY EXPORT_NAME xpressive)
 
 target_include_directories(boost_xpressive INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_xpressive INTERFACE
@@ -19,7 +18,9 @@ target_link_libraries(boost_xpressive INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_xpressive EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_xpressive EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

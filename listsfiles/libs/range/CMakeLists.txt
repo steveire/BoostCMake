@@ -10,7 +10,6 @@ set_property(TARGET boost_range PROPERTY EXPORT_NAME range)
 
 target_include_directories(boost_range INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_range INTERFACE
@@ -20,7 +19,9 @@ target_link_libraries(boost_range INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_range EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_range EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

@@ -67,7 +67,6 @@ add_library(boost_context
 
 target_include_directories(boost_context INTERFACE
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
 add_library(boost::context ALIAS boost_context)

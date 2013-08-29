@@ -32,7 +32,6 @@ add_library(boost_regex
 
 target_include_directories(boost_regex PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_regex PUBLIC

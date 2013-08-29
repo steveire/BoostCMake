@@ -61,7 +61,6 @@ add_library(boost::math::special_functions ALIAS boost_math_special_functions)
 set_property(TARGET boost_math_special_functions PROPERTY EXPORT_NAME math::special_functions)
 target_include_directories(boost_math_special_functions INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 function(add_math_library name suffix)

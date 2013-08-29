@@ -9,7 +9,6 @@ add_library(boost::timer::header_only ALIAS boost_timer_header_only)
 set_property(TARGET boost_timer_header_only PROPERTY EXPORT_NAME timer::header_only)
 target_include_directories(boost_timer_header_only INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 add_library(boost_timer

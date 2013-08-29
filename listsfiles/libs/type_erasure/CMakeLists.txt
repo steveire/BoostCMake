@@ -10,12 +10,13 @@ set_property(TARGET boost_type_erasure PROPERTY EXPORT_NAME type_erasure)
 
 target_include_directories(boost_type_erasure INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_type_erasure EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_type_erasure EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

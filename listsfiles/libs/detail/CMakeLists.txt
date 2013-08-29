@@ -10,7 +10,6 @@ set_property(TARGET boost_detail PROPERTY EXPORT_NAME detail)
 
 target_include_directories(boost_detail INTERFACE
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
 target_link_libraries(boost_detail INTERFACE
@@ -21,7 +20,9 @@ target_link_libraries(boost_detail INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_detail EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_detail EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

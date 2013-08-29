@@ -18,7 +18,6 @@ add_library(boost_prg_exec_monitor
 
 target_include_directories(boost_prg_exec_monitor PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
 target_link_libraries(boost_prg_exec_monitor PUBLIC
@@ -54,7 +53,6 @@ add_library(boost_test_exec_monitor STATIC
 
 target_include_directories(boost_test_exec_monitor PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
 target_link_libraries(boost_test_exec_monitor PRIVATE
@@ -95,7 +93,6 @@ add_library(boost_unit_test_framework
 
 target_include_directories(boost_unit_test_framework PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_unit_test_framework PUBLIC

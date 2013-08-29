@@ -10,7 +10,6 @@ set_property(TARGET boost_ublas PROPERTY EXPORT_NAME ublas)
 
 target_include_directories(boost_ublas INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_ublas INTERFACE
@@ -19,7 +18,9 @@ target_link_libraries(boost_ublas INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_ublas EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_ublas EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

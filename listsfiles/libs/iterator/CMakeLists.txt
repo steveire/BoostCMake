@@ -10,12 +10,13 @@ set_property(TARGET boost_iterator PROPERTY EXPORT_NAME iterator)
 
 target_include_directories(boost_iterator INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_iterator EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_iterator EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake

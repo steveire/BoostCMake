@@ -10,7 +10,6 @@ set_property(TARGET boost_type_traits PROPERTY EXPORT_NAME type_traits)
 
 target_include_directories(boost_type_traits INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_type_traits INTERFACE
@@ -20,7 +19,9 @@ target_link_libraries(boost_type_traits INTERFACE
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost_type_traits EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_type_traits EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
