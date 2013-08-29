@@ -36,5 +36,6 @@ install(TARGETS boost_system EXPORT ${PROJECT_NAME}Targets
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
+  NAMESPACE boost::
   DESTINATION CMake
   )

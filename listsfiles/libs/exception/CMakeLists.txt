@@ -25,5 +25,6 @@ install(TARGETS boost_exception EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
+  NAMESPACE boost::
   DESTINATION CMake
   )

@@ -18,5 +18,6 @@ install(TARGETS boost_type_erasure EXPORT ${PROJECT_NAME}Targets)
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
+  NAMESPACE boost::
   DESTINATION CMake
   )
