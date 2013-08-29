@@ -205,5 +205,5 @@ install(TARGETS boost_locale EXPORT ${PROJECT_NAME}Targets
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
   NAMESPACE boost::
-  DESTINATION CMake
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
