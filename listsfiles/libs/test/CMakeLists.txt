@@ -18,7 +18,6 @@ add_library(boost_prg_exec_monitor
 
 target_include_directories(boost_prg_exec_monitor PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
 target_link_libraries(boost_prg_exec_monitor PUBLIC
@@ -54,7 +53,6 @@ add_library(boost_test_exec_monitor STATIC
 
 target_include_directories(boost_test_exec_monitor PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
 target_link_libraries(boost_test_exec_monitor PRIVATE
@@ -95,7 +93,6 @@ add_library(boost_unit_test_framework
 
 target_include_directories(boost_unit_test_framework PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_unit_test_framework PUBLIC
@@ -114,8 +111,11 @@ target_link_libraries(boost_unit_test_framework PUBLIC
   )
 
 add_library(boost::prg_exec_monitor ALIAS boost_prg_exec_monitor)
+set_property(TARGET boost_prg_exec_monitor PROPERTY EXPORT_NAME prg_exec_monitor)
 add_library(boost::test_exec_monitor ALIAS boost_test_exec_monitor)
+set_property(TARGET boost_test_exec_monitor PROPERTY EXPORT_NAME test_exec_monitor)
 add_library(boost::unit_test_framework ALIAS boost_unit_test_framework)
+set_property(TARGET boost_unit_test_framework PROPERTY EXPORT_NAME unit_test_framework)
 
 install(DIRECTORY include/ DESTINATION include)
 
@@ -131,5 +131,26 @@ install(TARGETS
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  Algorithm
+  Config
+  Detail
+  ConceptCheck
+  Exception
+  Function
+  TypeTraits
+  )
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

@@ -32,7 +32,6 @@ add_library(boost_regex
 
 target_include_directories(boost_regex PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_regex PUBLIC
@@ -50,6 +49,7 @@ target_link_libraries(boost_regex PUBLIC
   )
 
 add_library(boost::regex ALIAS boost_regex)
+set_property(TARGET boost_regex PROPERTY EXPORT_NAME regex)
 
 install(DIRECTORY include/ DESTINATION include)
 
@@ -61,5 +61,28 @@ install(TARGETS boost_regex EXPORT ${PROJECT_NAME}Targets
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  Config
+  Detail
+  Exception
+  TypeTraits
+  Functional
+  Integer
+  Iterator
+  Utility
+  SmartPtr
+  )
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

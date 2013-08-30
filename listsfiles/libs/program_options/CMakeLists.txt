@@ -20,7 +20,6 @@ add_library(boost_program_options
 
 target_include_directories(boost_program_options PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
 target_link_libraries(boost_program_options PRIVATE
@@ -35,6 +34,7 @@ target_link_libraries(boost_program_options PRIVATE
   )
 
 add_library(boost::program_options ALIAS boost_program_options)
+set_property(TARGET boost_program_options PROPERTY EXPORT_NAME program_options)
 
 install(DIRECTORY include/ DESTINATION include)
 
@@ -46,5 +46,18 @@ install(TARGETS boost_program_options EXPORT ${PROJECT_NAME}Targets
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

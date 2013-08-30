@@ -4,18 +4,34 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostLockfree NONE)
 
-add_library(boost::lockfree INTERFACE)
+add_library(boost_lockfree INTERFACE)
+add_library(boost::lockfree ALIAS boost_lockfree)
+set_property(TARGET boost_lockfree PROPERTY EXPORT_NAME lockfree)
 
-target_include_directories(boost::lockfree INTERFACE
+target_include_directories(boost_lockfree INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::lockfree EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_lockfree EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

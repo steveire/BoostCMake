@@ -11,7 +11,6 @@ add_library(boost_graph
 
 target_include_directories(boost_graph PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 target_link_libraries(boost_graph PUBLIC
@@ -38,6 +37,7 @@ target_link_libraries(boost_graph PUBLIC
   )
 
 add_library(boost::graph ALIAS boost_graph)
+set_property(TARGET boost_graph PROPERTY EXPORT_NAME graph)
 
 install(DIRECTORY include/ DESTINATION include)
 
@@ -49,5 +49,39 @@ install(TARGETS boost_graph EXPORT ${PROJECT_NAME}Targets
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  Any
+  Algorithm
+  Serialization
+  Config
+  Detail
+  Foreach
+  Function
+  Fusion
+  Exception
+  ConceptCheck
+  Conversion
+  Regex
+  Unordered
+  MultiIndex
+  Parameter
+  PropertyMap
+  PropertyTree
+  Xpressive
+  Tuple
+  Typeof
+  )
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

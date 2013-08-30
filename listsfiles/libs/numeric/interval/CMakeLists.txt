@@ -4,18 +4,34 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostNumericInterval NONE)
 
-add_library(boost::numeric::interval INTERFACE)
+add_library(boost_numeric_interval INTERFACE)
+add_library(boost::numeric::interval ALIAS boost_numeric_interval)
+set_property(TARGET boost_numeric_interval PROPERTY EXPORT_NAME numeric::interval)
 
-target_include_directories(boost::numeric::interval INTERFACE
+target_include_directories(boost_numeric_interval INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::numeric::interval EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_numeric_interval EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

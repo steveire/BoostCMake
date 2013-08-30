@@ -4,18 +4,34 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostICL NONE)
 
-add_library(boost::icl INTERFACE)
+add_library(boost_icl INTERFACE)
+add_library(boost::icl ALIAS boost_icl)
+set_property(TARGET boost_icl PROPERTY EXPORT_NAME icl)
 
-target_include_directories(boost::icl INTERFACE
+target_include_directories(boost_icl INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::icl EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_icl EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

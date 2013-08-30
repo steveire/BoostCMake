@@ -39,7 +39,6 @@ add_library(boost_python
 
 target_include_directories(boost_python PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   ${PYTHON_INCLUDE_DIRS}
   )
 
@@ -65,6 +64,7 @@ if(NOT BUILD_SHARED_LIBS)
 endif()
 
 add_library(boost::python ALIAS boost_python)
+set_property(TARGET boost_python PROPERTY EXPORT_NAME python)
 
 install(DIRECTORY include/ DESTINATION include)
 
@@ -76,5 +76,26 @@ install(TARGETS boost_python EXPORT ${PROJECT_NAME}Targets
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  Foreach
+  Math
+  Serialization
+  Conversion
+  ConceptCheck
+  Graph
+  Parameter
+  )
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

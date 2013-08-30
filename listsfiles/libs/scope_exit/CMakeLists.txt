@@ -4,18 +4,34 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostScopeExit NONE)
 
-add_library(boost::scope_exit INTERFACE)
+add_library(boost_scope_exit INTERFACE)
+add_library(boost::scope_exit ALIAS boost_scope_exit)
+set_property(TARGET boost_scope_exit PROPERTY EXPORT_NAME scope_exit)
 
-target_include_directories(boost::scope_exit INTERFACE
+target_include_directories(boost_scope_exit INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::scope_exit EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_scope_exit EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

@@ -4,18 +4,34 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostPredef NONE)
 
-add_library(boost::predef INTERFACE)
+add_library(boost_predef INTERFACE)
+add_library(boost::predef ALIAS boost_predef)
+set_property(TARGET boost_predef PROPERTY EXPORT_NAME predef)
 
-target_include_directories(boost::predef INTERFACE
+target_include_directories(boost_predef INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::predef EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_predef EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake")
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

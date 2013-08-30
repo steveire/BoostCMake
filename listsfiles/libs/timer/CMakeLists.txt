@@ -4,10 +4,11 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostTimer CXX)
 
-add_library(boost::timer::header_only INTERFACE)
-target_include_directories(boost::timer::header_only INTERFACE
+add_library(boost_timer_header_only INTERFACE)
+add_library(boost::timer::header_only ALIAS boost_timer_header_only)
+set_property(TARGET boost_timer_header_only PROPERTY EXPORT_NAME timer::header_only)
+target_include_directories(boost_timer_header_only INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 add_library(boost_timer
@@ -23,11 +24,12 @@ target_link_libraries(boost_timer PUBLIC
   )
 
 add_library(boost::timer ALIAS boost_timer)
+set_property(TARGET boost_timer PROPERTY EXPORT_NAME timer)
 
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS
-    boost::timer::header_only
+    boost_timer_header_only
     boost_timer
   EXPORT ${PROJECT_NAME}Targets
   RUNTIME DESTINATION bin
@@ -37,5 +39,22 @@ install(TARGETS
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  Timer
+  Chrono
+  IO
+  )
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

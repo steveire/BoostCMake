@@ -4,22 +4,40 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostUBLAS NONE)
 
-add_library(boost::ublas INTERFACE)
+add_library(boost_ublas INTERFACE)
+add_library(boost::ublas ALIAS boost_ublas)
+set_property(TARGET boost_ublas PROPERTY EXPORT_NAME ublas)
 
-target_include_directories(boost::ublas INTERFACE
+target_include_directories(boost_ublas INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::ublas INTERFACE
+target_link_libraries(boost_ublas INTERFACE
   boost::typeof
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::ublas EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_ublas EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  Typeof
+  )
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

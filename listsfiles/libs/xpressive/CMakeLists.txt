@@ -4,22 +4,40 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(BoostXpressive NONE)
 
-add_library(boost::xpressive INTERFACE)
+add_library(boost_xpressive INTERFACE)
+add_library(boost::xpressive ALIAS boost_xpressive)
+set_property(TARGET boost_xpressive PROPERTY EXPORT_NAME xpressive)
 
-target_include_directories(boost::xpressive INTERFACE
+target_include_directories(boost_xpressive INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
-target_link_libraries(boost::xpressive INTERFACE
+target_link_libraries(boost_xpressive INTERFACE
   boost::proto
   )
 
 install(DIRECTORY include/ DESTINATION include)
 
-install(TARGETS boost::xpressive EXPORT ${PROJECT_NAME}Targets)
+install(TARGETS boost_xpressive EXPORT ${PROJECT_NAME}Targets
+  INCLUDES DESTINATION include
+  )
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  Proto
+  )
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

@@ -39,7 +39,6 @@ add_library(boost_mpi
 
 target_include_directories(boost_mpi PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   ${MPI_INCLUDE_PATH}
   )
 
@@ -55,6 +54,7 @@ target_link_libraries(boost_mpi PUBLIC
   )
 
 add_library(boost::mpi ALIAS boost_mpi)
+set_property(TARGET boost_mpi PROPERTY EXPORT_NAME mpi)
 
 add_library(boost_mpi_python
   src/python/serialize.cpp
@@ -70,6 +70,7 @@ target_link_libraries(boost_mpi_python
   )
 
 add_library(boost::mpi::python ALIAS boost_mpi_python)
+set_property(TARGET boost_mpi_python PROPERTY EXPORT_NAME mpi_python)
 
 if(BUILD_SHARED_LIBS)
   add_library(boost_mpi-py MODULE
@@ -111,5 +112,22 @@ install(TARGETS boost_mpi boost_mpi_python EXPORT ${PROJECT_NAME}Targets
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  Serialization
+  ConceptCheck
+  Graph
+  )
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

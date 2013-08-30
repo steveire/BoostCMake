@@ -21,7 +21,6 @@ add_library(boost_signals
 
 target_include_directories(boost_signals PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
 target_link_libraries(boost_signals PUBLIC
@@ -35,6 +34,7 @@ target_link_libraries(boost_signals PUBLIC
   )
 
 add_library(boost::signals ALIAS boost_signals)
+set_property(TARGET boost_signals PROPERTY EXPORT_NAME signals)
 
 install(DIRECTORY include/ DESTINATION include)
 
@@ -46,5 +46,26 @@ install(TARGETS boost_signals EXPORT ${PROJECT_NAME}Targets
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  Any
+  Config
+  Detail
+  Exception
+  Function
+  TypeTraits
+  Iterator
+  )
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

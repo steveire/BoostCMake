@@ -56,10 +56,11 @@ set(TR1_SOURCES
 
 include_directories(src/tr1)
 
-add_library(boost::math::special_functions INTERFACE)
-target_include_directories(boost::math::special_functions INTERFACE
+add_library(boost_math_special_functions INTERFACE)
+add_library(boost::math::special_functions ALIAS boost_math_special_functions)
+set_property(TARGET boost_math_special_functions PROPERTY EXPORT_NAME math::special_functions)
+target_include_directories(boost_math_special_functions INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
   )
 
 function(add_math_library name suffix)
@@ -90,6 +91,7 @@ function(add_math_library name suffix)
     boost::tr1
     )
   add_library(boost::math::${name} ALIAS boost_math_${name})
+set_property(TARGET boost_math_${name} PROPERTY EXPORT_NAME math_${name})
 endfunction()
 
 add_math_library(tr1  ""  ${TR1_SOURCES})
@@ -102,7 +104,7 @@ add_math_library(c99l "l" ${C99_SOURCES})
 install(DIRECTORY include/ DESTINATION include)
 
 install(TARGETS
-    boost::math::special_functions
+    boost_math_special_functions
     boost_math_tr1
     boost_math_tr1f
     boost_math_tr1l
@@ -117,5 +119,30 @@ install(TARGETS
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  Conversion
+  ConceptCheck
+  Config
+  Detail
+  Math
+  Format
+  Fusion
+  TypeTraits
+  Integer
+  StaticAssert
+  TR1
+  )
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)

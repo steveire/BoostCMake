@@ -46,7 +46,6 @@ add_library(boost_serialization
 
 target_include_directories(boost_serialization PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>"
   )
 
 target_link_libraries(boost_serialization PUBLIC
@@ -81,7 +80,9 @@ target_link_libraries(boost_wserialization PUBLIC
   )
 
 add_library(boost::serialization ALIAS boost_serialization)
+set_property(TARGET boost_serialization PROPERTY EXPORT_NAME serialization)
 add_library(boost::wserialization ALIAS boost_wserialization)
+set_property(TARGET boost_wserialization PROPERTY EXPORT_NAME wserialization)
 
 install(DIRECTORY include/ DESTINATION include)
 
@@ -94,5 +95,31 @@ install(TARGETS boost_serialization boost_wserialization
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  DESTINATION CMake
+  NAMESPACE boost::
+  DESTINATION lib/cmake/${PROJECT_NAME}
   )
+
+write_config_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  Array
+  Config
+  Detail
+  Spirit
+  Function
+  Preprocessor
+  TypeTraits
+  IO
+  Iterator
+  Utility
+  StaticAssert
+  SmartPtr
+  )
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${BOOST_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION lib/cmake/${PROJECT_NAME}
+)
