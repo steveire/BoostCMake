@@ -50,8 +50,9 @@ set(test_list
   weighted_tail_variate_means
   )
 
+set(test_targets)
 foreach(test IN LISTS test_list)
-  string(TOLOWER "${PROJECT_NAME}-test-${test}" target)
+  set(target "${PROJECT_NAME}-test-${test}")
   add_executable(${target} ${test})
   target_link_libraries(${target} PRIVATE
     boost::accumulators
@@ -59,9 +60,13 @@ foreach(test IN LISTS test_list)
     boost::foreach
     boost::unit_test_framework
     )
+  list(APPEND test_targets ${target})
   add_test(NAME ${PROJECT_NAME}.${test}
     COMMAND $<TARGET_FILE:${target}>
     )
 endforeach()
 
-
+add_custom_target(${PROJECT_NAME}-test
+  COMMAND ${CMAKE_CTEST_COMMAND} -R "^${PROJECT_NAME}" ${CMAKE_BINARY_DIR}
+  DEPENDS ${test_targets}
+  )

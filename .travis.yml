@@ -14,8 +14,8 @@ compiler:
 
 env:
   matrix:
-    - BUILD_TYPE=Debug
-    - BUILD_TYPE=Release
+    - PROJECT=BoostAccumulators
+    - PROJECT=BoostArray
 
 before_install:
   - sudo add-apt-repository -y ppa:purplekarrot/cmake
@@ -25,7 +25,5 @@ before_install:
 script:
   - mkdir build
   - cd build
-  - cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE ..
-  - cmake --build .
-  - ctest --output-on-failure . || true
-
+  - cmake -DCMAKE_BUILD_TYPE=Debug ..
+  - cmake --build . --target $PROJECT-test
