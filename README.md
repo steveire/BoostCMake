@@ -1,2 +1,2 @@
 # BoostCMake
-[![Build Status](https://travis-ci.org/purpleKarrot/BoostCMake.png)](https://travis-ci.org/purpleKarrot/BoostCMake)
+[![Build Status](https://travis-ci.org/boost-cmake/boost-cmake.png)](https://travis-ci.org/boost-cmake/boost-cmake)
