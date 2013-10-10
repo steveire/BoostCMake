@@ -36,3 +36,7 @@ install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
   DESTINATION CMake
   )
+
+export(TARGETS 
+  NAMESPACE boost::
+  FILE ${CMAKE_BINARY_DIR}/lib/cmake/${PROJECT_NAME}/${PROJECT_NAME}Targets.cmake)
